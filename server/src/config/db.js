@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
 
-const connectDb = () => {
+export const connectDb = () => {
     try {
-        
+        mongoose.connect('mongodb://localhost/SmartTalent');
+        console.log('Database is connected');
     }
     catch (error) {
         console.log(error);
