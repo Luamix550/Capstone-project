@@ -1,7 +1,7 @@
 import User from '../models/user.model.js'
 import bcrypt from 'bcryptjs';
 import { createAccessToken } from '../lib/createToken.js';
-import { validationResult } from 'express-validator';
+import { sendMailRegisterUser } from '../handlers/SendMail.js';
 
 /**
  * Register a new user.
@@ -28,8 +28,8 @@ import { validationResult } from 'express-validator';
 export const registerUser = async (req, res) => {
     try {
         const { name, lastname, email, password } = req.body;
-        
-        const emailFound = await User.find({ email });
+
+        const emailFound = await User.findOne({ email });
         if (emailFound) return res.status(409).json({ status: 'error', message: 'Email address already exists' });
 
         const passwordHash = await bcrypt.hash(password, 12);
@@ -45,6 +45,8 @@ export const registerUser = async (req, res) => {
         const token = await createAccessToken({ id: userSave._id });
         res.cookie('token', token);
         
+        await sendMailRegisterUser(userSave);
+
         res.json({
             id: userSave._id,
             name: userSave.name,

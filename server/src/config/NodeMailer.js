@@ -1,6 +1,5 @@
 // Import the nodemailer module. Nodemailer is a module for Node.js to send emails.
 import nodemailer from "nodemailer";
-dotenv.config();
 
 // Get the email and password from environment variables.
 // These are typically set in a .env file or through the hosting environment.
