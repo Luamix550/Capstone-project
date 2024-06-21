@@ -2,6 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import authRouter from "../routes/auth.routes.js";
 import feedRouter from "../routes/feedbacks.routes.js";
+import adminRouter from "../routes/admin.routes.js"
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -18,6 +19,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api", authRouter);
-app.use("/api", feedRouter);
+app.use("/api/feedbacks", feedRouter);
+app.use("/api/admin_feedbacks", adminRouter);
 
 export default app;
