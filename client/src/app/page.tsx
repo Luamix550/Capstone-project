@@ -1,12 +1,12 @@
+"use client"
 import React from "react";
-import LoginForm from "./components/LoginForm"
-import Navbar from "./components/Navbar"
-import DropDownProfile from "./components/DropDownProfile"
+import FeedbacksUser from "./news/FeedbacksUser";
+import GetStarted from "./news/pages"
 
 export default function Home() {
   return (
     <>
-     <Navbar/>
+    <FeedbacksUser></FeedbacksUser>
     </>
   );
 }
