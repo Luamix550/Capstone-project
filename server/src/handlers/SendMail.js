@@ -104,8 +104,9 @@ export const mailByStatusFeedBack = async (userId, date, feedback) => {
     // Create the content of the email
     const content = generateChangeStatusMail({
       completeName: `${name} ${lastname}`,
-      feedbackId: feedback.title,
-      newStatus: "",
+      feedbackTitle: feedback.title,
+      newStatus: feedback.status,
+      date: date
     });
 
     // Send the email using the transporter
