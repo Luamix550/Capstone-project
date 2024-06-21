@@ -27,8 +27,8 @@ export const mailByCreatedFeedBack = async (userId, feedback) => {
                      <p>Your input is valuable to us and helps improve our services.</p>
                      <ul>
                       <h1>Feedback Details:</h1>
-                        <li>Modification date: ${date}</li>
                         <li>Title: ${feedback.title}</li>
+                        <li>Description: ${feedback.description}</li>
                         <li>New Status: ${feedback.status}</li>
                      </ul>
                      <p>If you have any questions, feel free to reply to this email or visit our support page at <a href="https://smartranks.co/">Smart Rank</a>.</p>
@@ -42,7 +42,7 @@ export const mailByCreatedFeedBack = async (userId, feedback) => {
     const data = await transporter.sendMail({
       from: `"Smart Talent" <${process.env.GOOGLE_EMAIL}>`, // Sender's email
       to: email, // Recipient's email
-      subject: "Subject: Your Feedback Has Been Successfully Submitted", // Email subject
+      subject: "Your Feedback Has Been Successfully Submitted", // Email subject
       text: "The status of your feedback has changed. Thank you!", // Plain text version of the email
       html: content, // HTML version of the email
     });
