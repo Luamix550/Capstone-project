@@ -1,8 +1,4 @@
-export const generateStatusMail = ({ name, status }) => {
-  return ``;
-};
-
-export const generateRegisterMail = ({ complete_name }) => {
+export const generateRegisterMail = ({ completeName }) => {
   return `<html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -145,13 +141,13 @@ export const generateRegisterMail = ({ complete_name }) => {
       </div>
 
       <div class="boxIntroduction">
-        <h3 class="greeting">Hi, ${complete_name}</h3>
+        <h3 class="greeting">Hi, ${completeName}</h3>
         <p>
           We are delighted to confirm your registration in the
           <strong class="nameCompany">Smart Talent Feedback System.</strong>
           Your feedback is valuable to us and will help us continuously improve
           our services. To access the feedback system, simply click on the
-          following link: <a class="linkRank" href="https://smartranks.co/">Smart Ranks</a>
+          following link: <a class="linkRank" href="">Smart Ranks</a>
         </p>
       </div>
 
