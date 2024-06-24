@@ -10,12 +10,4 @@ html, body {
 #__next {
   display: flex;
   flex-direction: column;
-
-}
-
-body {
-  background-image: url('https://i.imgur.com/YRrcv1H.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }
