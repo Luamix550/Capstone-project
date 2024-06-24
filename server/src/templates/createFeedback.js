@@ -1,4 +1,4 @@
-const generateFeedback = ({ feedbackId, completeName }) => {
+export const generateFeedback = ({ feedbackId, completeName }) => {
   return `
     <html lang="en">
   <head>

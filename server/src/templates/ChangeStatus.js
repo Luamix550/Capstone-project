@@ -25,7 +25,7 @@ export const generateChangeStatusMail = ({
   
         <div style="display: flex; flex-wrap: wrap; width: 90%; margin-left: 5%; margin-top: 20px;">
           <div style="flex-basis: 50%; flex-grow: 1; display: grid; place-content: center;">
-            <img src="https://res.cloudinary.com/df2gu30lb/image/upload/v1718984464/characters/ihiqtywa0eynxzie8mmt.png" alt="illustration" style="width: auto; height: auto; filter: drop-shadow(0px 0px 10px #858585);">
+            <img src="https://res.cloudinary.com/df2gu30lb/image/upload/v1718984464/characters/ihiqtywa0eynxzie8mmt.png" alt="illustration" style="width: 50%; height: auto; filter: drop-shadow(0px 0px 10px #858585);">
           </div>
   
           <div style="flex-basis: 50%; flex-grow: 1; display: flex; align-items: center; padding-left: 20px;">

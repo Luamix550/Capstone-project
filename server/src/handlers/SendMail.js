@@ -4,6 +4,7 @@ import User from "../models/user.model.js"; // Import the User model
 // Import Templates email
 import { generateChangeStatusMail } from "../templates/ChangeStatus.js";
 import { generateRegisterMail } from "../templates/Register.js";
+import { generateFeedback } from "../templates/createFeedback.js";
 
 /**
  * Sends an email notification when the status of feedback changes.
