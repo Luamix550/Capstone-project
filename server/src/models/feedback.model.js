@@ -1,8 +1,15 @@
 import mongoose, { Schema } from "mongoose";
+const ObjectId = mongoose.Types.ObjectId;
 
 const newFeedback = new mongoose.Schema({
+    _id: {
+        type: String,
+        default: function () {
+            return new ObjectId().toString()
+        }
+    },
     userId: {
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: 'User',
         content: String,
         required: true,

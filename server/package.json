@@ -20,9 +20,15 @@
     "express-zod-api": "^19.2.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.14",
+    "swagger-ui-express": "^5.0.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@eslint/js": "^9.5.0",
+    "eslint": "^9.5.0",
+    "globals": "^15.6.0",
     "nodemon": "^3.1.3"
   }
 }

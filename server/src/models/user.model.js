@@ -1,15 +1,20 @@
 import mongoose from 'mongoose';
+const ObjectId = mongoose.Types.ObjectId;
 
 const newUser = new mongoose.Schema({
+    _id: {
+        type: String,
+        default: function () {
+            return new ObjectId().toString()
+        }
+    },
     name: {
         type: String,
         required: true,
-        trim: true,
     },
     lastname: {
         type: String,
         required: true,
-        trim: true,
     },
     email: {
         type: String,
@@ -20,6 +25,10 @@ const newUser = new mongoose.Schema({
     password: {
         type: String,
         required: true,
+    },
+    avatar: {
+        type: String,
+        default: ''
     }
 }, {
     timestamps: true,

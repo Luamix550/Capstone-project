@@ -1,3 +1,4 @@
+import { mailByCreatedFeedBack } from '../handlers/SendMail.js';
 import Feedback from '../models/feedback.model.js'
 
 /**
@@ -89,6 +90,8 @@ export const newFeedback = async (req, res) => {
 
     const saveFeedback = await newFeedback.save();
 
+    await mailByCreatedFeedBack(userId, saveFeedback);
+
     res.json({
         userId: saveFeedback.userId,
         title: saveFeedback.title,
@@ -122,7 +125,8 @@ export const newFeedback = async (req, res) => {
  * @throws {500} If there is a server error while updating the feedback.
  */
 export const updateFeedback = async (req, res) => {
-    const feedback = await Feedback.findByIdAndUpdate(req.params.id, req.body, {
+    const { id } = req.params;
+    const feedback = await Feedback.findByIdAndUpdate(id, req.body, {
         new: true,
     });
 
@@ -143,7 +147,8 @@ export const updateFeedback = async (req, res) => {
  * @throws {500} If there is a server error while deleting the feedback.
  */
 export const deleteFeedback = async (req, res) => {
-    const feedback = await Feedback.findByIdAndDelete(req.params.id);
+    const { id } = req.params;
+    const feedback = await Feedback.findByIdAndDelete(id);
     if(!feedback) return res.status(404).json({ status: 'error', message: 'Feedback not found' });
     return res.sendStatus(204);
 }
