@@ -44,6 +44,9 @@ export const FeedbacksUsers = () => {
                 incidunt, a consequuntur recusandae ab saepe illo est quia obcaecati neque
                 quibusdam eius accusamus error officiis atque voluptates magnam!
               </p>
+            <br></br>
+              <h3><strong>Status Feedbacks</strong></h3>
+              <p>In progress</p>
             </blockquote>
 
             <blockquote className="rounded-lg bg-gray-50 p-6 sm:p-8 border border-gray-400 shadow-2xl">
@@ -80,6 +83,9 @@ export const FeedbacksUsers = () => {
                 incidunt, a consequuntur recusandae ab saepe illo est quia obcaecati neque
                 quibusdam eius accusamus error officiis atque voluptates magnam!
               </p>
+              <br></br>
+              <h3><strong>Status Feedbacks</strong></h3>
+              <p>Not started</p>
             </blockquote>
 
             <blockquote className="rounded-lg bg-gray-50 p-6 sm:p-8 border border-gray-400 shadow-2xl">
@@ -116,6 +122,9 @@ export const FeedbacksUsers = () => {
                 incidunt, a consequuntur recusandae ab saepe illo est quia obcaecati neque
                 quibusdam eius accusamus error officiis atque voluptates magnam!
               </p>
+              <br></br>
+              <h3><strong>Status Feedbacks</strong></h3>
+              <p>Done</p>
             </blockquote>
           </div>
         </div>
