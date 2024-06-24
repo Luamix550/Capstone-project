@@ -18,6 +18,7 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.urlencoded({extended: false}));
 app.use("/api", authRouter);
 app.use("/api/feedbacks", feedRouter);
 app.use("/api/admin_feedbacks", adminRouter);

@@ -1,6 +1,7 @@
 import Feedback from '../models/feedback.model.js'
 import { mailByStatusFeedBack } from '../handlers/SendMail.js';
 
+
 export const allFeedbacks = async (req, res) => {
     const feedbacks = await Feedback.find();
     
