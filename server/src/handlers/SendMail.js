@@ -10,7 +10,7 @@ import { generateRegisterMail } from "../templates/Register.js";
  * @param {string} userId - The ID of the user to notify.
  * @returns {Promise<boolean>} - Returns true if the email was sent successfully, false otherwise.
  */
-export const mailByCreatedFeedBack = async (userId, feedback) => {
+export const mailByCreatedFeedBack = async (userId, feedbackId) => {
   try {
     // Fetch the user's details by their ID, selecting only name, lastname, and email fields
     const detailUser = await User.findById(
@@ -27,20 +27,10 @@ export const mailByCreatedFeedBack = async (userId, feedback) => {
     const { name, lastname, email } = detailUser;
 
     // Create the content of the email
-    const content = `<p>Dear ${name} ${lastname},</p>
-                     <p>Thank you for submitting your feedback to the Smart Talent Feedback System. We are pleased to confirm that your feedback has been successfully posted.</p>
-                     <p>Your input is valuable to us and helps improve our services.</p>
-                     <ul>
-                      <h1>Feedback Details:</h1>
-                        <li>Title: ${feedback.title}</li>
-                        <li>Description: ${feedback.description}</li>
-                        <li>New Status: ${feedback.status}</li>
-                     </ul>
-                     <p>If you have any questions, feel free to reply to this email or visit our support page at <a href="https://smartranks.co/">Smart Rank</a>.</p>
-                     <p>Thank you for helping us improve.</p>
-                     <p>Best regards,</p>
-                     <p>The Smart Talent Feedback System Team</p>
-                     <p>Smart Talent</p>`;
+    const content = generateFeedback({
+      feedbackId: feedbackId,
+      completeName: `${name} ${lastname}`,
+    });
 
     // Send the email using the transporter
     const data = await transporter.sendMail({
@@ -106,7 +96,7 @@ export const mailByStatusFeedBack = async (userId, date, feedback) => {
       completeName: `${name} ${lastname}`,
       feedbackTitle: feedback.title,
       newStatus: feedback.status,
-      date: date
+      date: date,
     });
 
     // Send the email using the transporter
