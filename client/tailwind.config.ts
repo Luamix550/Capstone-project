@@ -11,8 +11,8 @@ const config: Config = {
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'homepage': "url('https://i.imgur.com/dY8a3MA.png')",
       },
     },
   },
@@ -20,4 +20,5 @@ const config: Config = {
     require('flowbite/plugin')
   ],
 };
+
 export default config;
