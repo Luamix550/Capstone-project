@@ -113,7 +113,8 @@ export const newFeedback = async (req, res) => {
             userId: saveFeedback.userId,
             title: saveFeedback.title,
             description: saveFeedback.description,
-            stars: saveFeedback.current_raiting,
+            status: saveFeedback.status,
+            rating: saveFeedback.current_rating,
             createdAt: saveFeedback.createdAt,
             updatedAt: saveFeedback.updatedAt,
         });
