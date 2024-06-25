@@ -29,7 +29,12 @@ const newUser = new mongoose.Schema({
     avatar: {
         type: String,
         default: ''
-    }
+    },
+    rol: {
+        type: String,
+        enum: ['User', 'Admin'],
+        default: 'User',
+    },
 }, {
     timestamps: true,
 });

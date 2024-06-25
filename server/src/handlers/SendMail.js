@@ -85,9 +85,7 @@ export const mailByStatusFeedBack = async (userId, date, feedback) => {
     ).lean();
 
     // Check if the user exists
-    if (!detailUser) {
-      throw new Error("User not found"); // Throw an error if the user is not found
-    }
+    if (!detailUser) throw new Error("User not found"); // Throw an error if the user is not found
 
     // Destructure the user's name, lastname, and email
     const { name, lastname, email } = detailUser;
