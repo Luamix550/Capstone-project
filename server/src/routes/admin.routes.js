@@ -8,7 +8,7 @@ router.get('/feedbacks', adminRequire, allFeedbacks);
 router.get('/feedback/:id', adminRequire, feedbackUser);
 router.put('/feedback/:id', adminRequire, updateFeedback);
 router.get('/users', adminRequire, allUsers);
-router.get('/user/:id', adminRequire, user)
+router.get('/user/:id', adminRequire, user);
 router.put('/user/:id', adminRequire, updateUserRol);
 
 export default router;
