@@ -38,7 +38,7 @@ export const registerUser = async (req, res) => {
         });
 
         const userSave = await newUser.save();
-        const token = await createAccessToken({ id: userSave._id });
+        const token = await createAccessToken({ id: userSave._id, rol: userSave.rol });
         res.cookie('token', token);
         
         await sendMailRegisterUser(userSave);
@@ -89,7 +89,7 @@ export const loginUser = async (req, res) => {
         const isPasswordValid = await bcrypt.compare(password, userFound.password);
         if (!isPasswordValid) return res.status(403).json({ status: 'error', message: 'Incorrect password' });
 
-        const token = await createAccessToken({ id: userFound._id });
+        const token = await createAccessToken({ id: userFound._id, rol: userFound.rol });
         res.cookie('token', token);
         
         res.json({
