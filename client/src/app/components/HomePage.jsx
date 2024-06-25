@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from 'flowbite';
-import Login from './LoginForm';
+import Register from './RegisterForm';
 
 export const Homepage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -52,7 +52,7 @@ export const Homepage = () => {
         x
       </button>
       <div className="p-5">
-        <Login />
+        <Register />
       </div>
     </div>
   </div>

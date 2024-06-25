@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from 'flowbite';
-import Login from './LoginForm'; // Ajusta la ruta de importación según sea necesario
+import Login from './RegisterForm'; // Ajusta la ruta de importación según sea necesario
 
 export const Homepage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
