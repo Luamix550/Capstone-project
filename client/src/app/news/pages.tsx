@@ -1,13 +1,12 @@
 import React from 'react'
 import LoginForm from "../components/LoginForm"
+import HomePage from "../components/HomePage"
 
 const GetStarted = () => {
   return (
-    <div>
-    <div className='bg-background-1'>
-    <LoginForm />
-    </div>
-    </div>
+    <>
+      <HomePage></HomePage>
+    </>
   )
 }
 

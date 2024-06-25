@@ -1,17 +1,16 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import { FeedbacksUsers } from '../components/FeedbacksUsers';
-import Login from '../components/LoginForm';
+import  HeroSectionFeedbacks from '../components/HeroSection'
+
 const FeedbacksUser = () => {
   return (
-    <div className="bg-background-1 flex flex-col h-screen">
+    <>
+    <div className="bg-background-1 bg-no-repeat bg-cover">
       <Navbar />
-      <div className="flex-grow">
-      </div>
-      <div className="mt-auto">
-        <Login></Login>
-      </div>
+      <HeroSectionFeedbacks />
     </div>
+    </>
   );
 };
 

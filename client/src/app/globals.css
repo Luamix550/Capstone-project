@@ -11,3 +11,21 @@ html, body {
   display: flex;
   flex-direction: column;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+  overflow: smooth
+  ;
+}
+
+::-webkit-scrollbar-track {
+  background: #fffefe;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

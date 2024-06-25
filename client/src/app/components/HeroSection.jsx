@@ -1,0 +1,44 @@
+import React, { useState, useRef } from 'react';
+import Modal from './Modal';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import FeedbacksUsers from './FeedbacksUsers';
+import "../globals.css";
+
+export const HeroSectionFeedbacks = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+
+  return (
+    <div className="relative py-24">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="max-w-3xl mx-auto text-center">
+          <h1 className="sm:text-3xl lg:text-5xl font-semibold text-gray-900 leading-tight mb-6">
+            Change starts with you! Share us your <span className='text-green-600'>Feedback.</span>
+          </h1>
+          <div className="flex items-center justify-center">
+            <button
+              className="rounded-lg border border-gray shadow-xl bg-green-600 px-6 py-4 text-base font-semibold text-white hover:bg-green-400  hover:scale-125 transition duration-300"
+              onClick={openModal}
+            >
+              Add Feedback
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <Modal isOpen={modalOpen} onClose={closeModal} onAddFeedback={addFeedback} />
+        <FeedbacksUsers feedbacks={feedbacks} addFeedback={addFeedback} />
+      </div>
+  );
+};
+
+export default HeroSectionFeedbacks;

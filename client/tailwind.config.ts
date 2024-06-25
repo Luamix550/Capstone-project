@@ -1,3 +1,4 @@
+import { nextui } from '@nextui-org/theme';
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -6,16 +7,19 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/flowbite/**/*.js",
+    "./node_modules/@nextui-org/theme/dist/components/**/*.js"
   ],
   theme: {
     extend: {
       backgroundImage: {
         'background-1': "url('https://i.imgur.com/YRrcv1H.png')",
+        'homepage': "url('https://i.imgur.com/dY8a3MA.png')",
       },
     },
   },
   plugins: [
-    require('flowbite/plugin')
+    nextui()
   ],
 };
+
 export default config;
