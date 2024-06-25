@@ -1,7 +1,7 @@
 import User from '../models/user.model.js'
 import bcrypt from 'bcryptjs';
 import { createAccessToken } from '../lib/createToken.js';
-import { validationResult } from 'express-validator';
+import { sendMailRegisterUser } from '../handlers/SendMail.js';
 
 /**
  * Register a new user.
@@ -28,10 +28,6 @@ import { validationResult } from 'express-validator';
 export const registerUser = async (req, res) => {
     try {
         const { name, lastname, email, password } = req.body;
-        
-        const emailFound = await User.find({ email });
-        if (emailFound) return res.status(409).json({ status: 'error', message: 'Email address already exists' });
-
         const passwordHash = await bcrypt.hash(password, 12);
 
         const newUser = User({
@@ -42,9 +38,11 @@ export const registerUser = async (req, res) => {
         });
 
         const userSave = await newUser.save();
-        const token = await createAccessToken({ id: userSave._id });
+        const token = await createAccessToken({ id: userSave._id, rol: userSave.rol });
         res.cookie('token', token);
         
+        await sendMailRegisterUser(userSave);
+
         res.json({
             id: userSave._id,
             name: userSave.name,
@@ -91,7 +89,7 @@ export const loginUser = async (req, res) => {
         const isPasswordValid = await bcrypt.compare(password, userFound.password);
         if (!isPasswordValid) return res.status(403).json({ status: 'error', message: 'Incorrect password' });
 
-        const token = await createAccessToken({ id: userFound._id });
+        const token = await createAccessToken({ id: userFound._id, rol: userFound.rol });
         res.cookie('token', token);
         
         res.json({

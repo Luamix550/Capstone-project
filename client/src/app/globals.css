@@ -10,20 +10,12 @@ html, body {
 #__next {
   display: flex;
   flex-direction: column;
+
 }
 
-.bg-homepage {
+body {
+  background-image: url('https://i.imgur.com/YRrcv1H.png');
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
-  background-position: right 100% bottom 45%;
-  width: 100%;
-}
-
-@media (max-width: 800px) {
-  .container {
-    background-color: white;
-    opacity: 100%;
-    padding: 20px;
-    border-radius: 20px;
-    border: solid rgb(72, 141, 72);
-  }
 }

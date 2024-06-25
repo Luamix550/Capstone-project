@@ -1,32 +1,15 @@
 import axios from 'axios';
 import React from 'react';
+import axios from 'axios';
 
 const Login = () => {
-
- const register = async (formData) => {
-  const name = formData.get('name');
-  const lastname = formData.get('lastname');
-  const email = formData.get('email');
-  const password = formData.get('password');
-
-  axios({
-    method: 'post',
-    url: 'http://localhost:3000/register',
-    data: {
-      name,
-      lastname,
-      email,
-      password,
-    }
-  })
- }
   return (
     <div className="flex items-center justify-center min-h-screen min-h-2.5">
       <div className="relative flex flex-col text-gray-700 bg-grey shadow-lg rounded-xl p-6 bg-clip-border">
         <h4 className="block font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900 text-center">
           Sign Up
         </h4>
-        <form action={register} className="max-w-screen-lg mt-8 mb-2 w-80 sm:w-96 min-h-3.5">
+        <form className="max-w-screen-lg mt-8 mb-2 w-80 sm:w-96">
           <div className="flex flex-col gap-6 mb-1">
             <h6 className="block -mb-3 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
               Name
@@ -49,13 +32,23 @@ const Login = () => {
               />
             </div>
             <h6 className="block -mb-3 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
+              Lastname
+            </h6>
+            <div className="relative h-11 w-full min-w-[200px]">
+              <input
+                type="text"
+                name='lastname'
+                placeholder="Last name"
+                className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+              />
+            </div>
+            <h6 className="block -mb-3 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
               Email address
             </h6>
             <div className="relative h-11 w-full min-w-[200px]">
               <input
-                name='email'
-                type='email'
                 placeholder="name@mail.com"
+                name='email'
                 className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
               />
             </div>

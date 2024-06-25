@@ -5,7 +5,7 @@ import {Homepage} from "../components/homepage"
 const GetStarted = () => {
   return (
     <>
-      <Homepage></Homepage>
+      <LoginForm />
     </>
   )
 }
