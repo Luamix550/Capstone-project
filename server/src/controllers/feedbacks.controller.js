@@ -23,10 +23,18 @@ import Feedback from '../models/feedback.model.js'
  * @throws {500} If there is a server error while retrieving feedbacks.
  */
 export const allFeedbacks = async (req, res) => {
-    const tasks = await Feedback.find({ userId: req.userId }).populate('userId');
-    if (tasks.length === 0) return res.status(404).json({ status: 'error', message: 'No feedbacks found' })
-    res.json(tasks);
-}
+    try {
+        const tasks = await Feedback.find({ userId: req.userId }).populate('userId');
+        
+        if (tasks.length === 0) return res.status(404).json({ status: 'error', message: 'No feedbacks found' });
+
+        res.json(tasks);
+    } catch (error) {
+        console.error('Error fetching feedbacks:', error);
+        res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }
+};
+
 
 
 /**
@@ -50,11 +58,19 @@ export const allFeedbacks = async (req, res) => {
  * @throws {500} If there is a server error while retrieving the feedback.
  */
 export const getFeedback = async (req, res) => {
-    const feedback = await Feedback.findById(req.params.id);
-    
-    if (!feedback) return res.status(404).json({ status: 'error', message: 'Feedback not found' });
-    res.json(feedback);
-}
+    try {
+        const feedback = await Feedback.findById(req.params.id);
+
+        if (!feedback) return res.status(404).json({ status: 'error', message: 'Feedback not found' });
+
+        res.json(feedback);
+
+    } catch (error) {
+        console.error('Error fetching feedback:', error);
+        res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }
+};
+
 
 /**
  * Create a new feedback.
@@ -78,29 +94,35 @@ export const getFeedback = async (req, res) => {
  * @throws {500} If there is a server error while creating the feedback.
  */
 export const newFeedback = async (req, res) => {
-    const userId = req.userId;
-    const { title, description, current_raiting } = req.body;
+    try {
+        const userId = req.userId;
+        const { title, description, current_rating } = req.body;
 
-    const newFeedback = Feedback({
-        userId,
-        title,
-        description,
-        current_raiting,
-    });
+        const newFeedback = new Feedback({
+            userId,
+            title,
+            description,
+            current_rating
+        });
 
-    const saveFeedback = await newFeedback.save();
+        const saveFeedback = await newFeedback.save();
 
-    await mailByCreatedFeedBack(userId, saveFeedback);
+        await mailByCreatedFeedBack(userId, saveFeedback);
 
-    res.json({
-        userId: saveFeedback.userId,
-        title: saveFeedback.title,
-        description: saveFeedback.description,
-        stars: saveFeedback.current_raiting,
-        createdAt: saveFeedback.createdAt,
-        updatedAt: saveFeedback.updatedAt,
-    });
-}
+        res.status(201).json({
+            userId: saveFeedback.userId,
+            title: saveFeedback.title,
+            description: saveFeedback.description,
+            stars: saveFeedback.current_raiting,
+            createdAt: saveFeedback.createdAt,
+            updatedAt: saveFeedback.updatedAt,
+        });
+    } catch (error) {
+        console.error('Error creating feedback:', error);
+        res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }
+};
+
 
 
 /**
@@ -126,14 +148,22 @@ export const newFeedback = async (req, res) => {
  */
 export const updateFeedback = async (req, res) => {
     const { id } = req.params;
-    const feedback = await Feedback.findByIdAndUpdate(id, req.body, {
-        new: true,
-    });
 
-    if (!feedback) return res.status(404).json({ status: 'error', message: 'Feedback not found' });
-    res.json(feedback);
+    try {
+
+        const feedback = await Feedback.findByIdAndUpdate(id, req.body, {
+            new: true,
+        });
+
+        if (!feedback) return res.status(404).json({ status: 'error', message: 'Feedback not found' });
+
+        res.json(feedback);
+
+    } catch (error) {
+        console.error('Error updating feedback:', error);
+        res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }
 }
-
 /**
  * Delete a specific feedback by ID.
  * 
@@ -148,7 +178,17 @@ export const updateFeedback = async (req, res) => {
  */
 export const deleteFeedback = async (req, res) => {
     const { id } = req.params;
-    const feedback = await Feedback.findByIdAndDelete(id);
-    if(!feedback) return res.status(404).json({ status: 'error', message: 'Feedback not found' });
-    return res.sendStatus(204);
+
+    try {
+
+        const feedback = await Feedback.findByIdAndDelete(id);
+
+        if (!feedback) return res.status(404).json({ status: 'error', message: 'Feedback not found' });
+
+        return res.sendStatus(204);
+        
+    } catch (error) {
+        console.error('Error deleting feedback:', error);
+        res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }
 }
