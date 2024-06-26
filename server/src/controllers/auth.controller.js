@@ -2,6 +2,7 @@ import User from '../models/user.model.js'
 import bcrypt from 'bcryptjs';
 import { createAccessToken } from '../lib/createToken.js';
 import { sendMailRegisterUser } from '../handlers/SendMail.js';
+import sha256 from 'js-sha256';
 
 /**
  * Register a new user.
@@ -33,19 +34,21 @@ export const registerUser = async (req, res) => {
         if (emailFound) return res.status(409).json({ status: 'error', message: 'Email address already exists' });
 
         const passwordHash = await bcrypt.hash(password, 12);
+        const avatarHash = sha256(email);
 
         const newUser = User({
             name,
             lastname,
             email,
             password: passwordHash,
+            avatar: avatarHash,
         });
 
         const userSave = await newUser.save();
         const token = await createAccessToken({ id: userSave._id, rol: userSave.rol });
         res.cookie('token', token);
         
-        await sendMailRegisterUser(userSave);
+        // await sendMailRegisterUser(userSave);
 
         res.json({
             id: userSave._id,
@@ -149,6 +152,7 @@ export const profile = async (req, res) => {
         name: userFound.name,
         lastname: userFound.lastname,
         email: userFound.email,
+        avatar: userFound.avatar,
         createdAt: userFound.createdAt,
         updatedAt: userFound.updatedAt,
     });
