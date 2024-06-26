@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import HalfRating from './HalfRating';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import HeroSection from "./HeroSection"
 
 const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
   const [expandedIndex, setExpandedIndex] = useState(null);
