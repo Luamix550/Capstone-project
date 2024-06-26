@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Modal } from 'flowbite';
 import Register from './RegisterForm';
+
 export const Homepage = () => {
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
@@ -10,6 +11,7 @@ export const Homepage = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
   return (
     <div className="relative bg-homepage h-screen bg-cover bg-center flex flex-col justify-center">
       <div className="absolute top-4 left-4 cursor-pointer" onClick={() => window.location.href = 'https://smartranks.co/'}>
