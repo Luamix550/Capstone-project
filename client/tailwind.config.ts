@@ -14,6 +14,7 @@ const config: Config = {
       backgroundImage: {
         'background-1': "url('https://i.imgur.com/YRrcv1H.png')",
         'homepage': "url('https://i.imgur.com/dY8a3MA.png')",
+        'mobile': "url('https://i.imgur.com/JfV72lb.png')",
       },
     },
   },

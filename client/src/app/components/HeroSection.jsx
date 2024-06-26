@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from './Modal';
 import FeedbacksUsers from './FeedbacksUsers';
 import "../globals.css";
+
 const HeroSectionFeedbacks = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [feedbacks, setFeedbacks] = useState([]);

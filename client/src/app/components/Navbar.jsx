@@ -5,6 +5,10 @@ const Navbar = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
+  const navigateToAbout = () => {
+    router.push('/feedback');
+  }
+
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -21,12 +25,12 @@ const Navbar = () => {
               className="block h-12 w-12 rounded-full overflow-hidden border-2 focus:border-gray-900"
               onClick={toggleDropdown}
             >
-              <img className="h-full w-full object-cover" src="https://ca.slack-edge.com/T0423U1MW21-U0614Q8SG5A-c0a8883acfc6-512" alt="Your avatar" />
+              <img className="h-full w-full object-cover" src="https://gravatar.com/avatar/HASH " alt="Your avatar" />
             </button>
             {isOpen && (
               <div className='absolute mt-2 w-28 bg-white border-2 rounded-lg shadow-md right-0'>
                 <button 
-                  onClick={() => router.push("/pages")} 
+                  onClick={() => router.push("/feedback")} 
                   className='block px-5 py-2 text-gray-800 hover:bg-gray-100 w-full text-left'
                 >
                   Sign out

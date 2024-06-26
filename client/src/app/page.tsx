@@ -1,12 +1,13 @@
 "use client"
 import React from "react";
-import FeedbacksUser from "./news/FeedbacksUser";
-import GetStarted from "./news/GetStarted"
+import Feedbacks from "./pages/FeedBacks";
+import GetStarted from "./pages/GetStarted"
 
 export default function Home() {
   return (
     <>
-    <FeedbacksUser></FeedbacksUser>
+      <Feedbacks></Feedbacks>
+      <GetStarted></GetStarted>
     </>
   );
 }
