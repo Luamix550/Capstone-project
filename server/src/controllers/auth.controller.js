@@ -44,7 +44,7 @@ export const registerUser = async (req, res) => {
         const token = await createAccessToken({ id: userSave._id, rol: userSave.rol });
         res.cookie('token', token);
         
-        // await sendMailRegisterUser(userSave);
+        await sendMailRegisterUser(userSave);
 
         res.json({
             id: userSave._id,
