@@ -6,7 +6,7 @@ import GetStarted from "./news/GetStarted"
 export default function Home() {
   return (
     <>
-    <GetStarted></GetStarted>
+    <FeedbacksUser></FeedbacksUser>
     </>
   );
 }

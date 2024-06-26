@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import HalfRating from './HalfRating';
 import FeedbacksUser from '../news/FeedbacksUser';
-
 const Modal = ({ isOpen, onClose, onAddFeedback }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [rating, setRating] = useState(0);
-  const [status, SetStatus] = useState('')
-
+  const [status, setStatus] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
     onAddFeedback({ title, description, rating, status });
     onClose();
   };
-
   if (!isOpen) return null;
-
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white rounded-lg p-8 w-full max-w-md mx-auto">
@@ -43,18 +39,16 @@ const Modal = ({ isOpen, onClose, onAddFeedback }) => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
+              maxLength={300}
             ></textarea>
           </div>
           <div className="mb-4">
             <label className="block text-gray-700">Rating</label>
-            <HalfRating 
-              name="feedback-rating" 
-              value={rating} 
-              onChange={(event, newValue) => setRating(newValue)} 
+            <HalfRating
+              name="feedback-rating"
+              value={rating}
+              onChange={(event, newValue) => setRating(newValue)}
             />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700"></label> 
           </div>
           <div className="flex justify-end">
             <button
@@ -76,5 +70,4 @@ const Modal = ({ isOpen, onClose, onAddFeedback }) => {
     </div>
   );
 };
-
 export default Modal;

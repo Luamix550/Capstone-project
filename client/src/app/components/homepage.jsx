@@ -1,25 +1,19 @@
 import React, { useState } from 'react';
 import { Modal } from 'flowbite';
-import Login from './RegisterForm'; // Ajusta la ruta de importación según sea necesario
-
+import Register from './RegisterForm';
 export const Homepage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const openModal = () => {
     setIsModalOpen(true);
   };
-
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
   return (
     <div className="relative bg-homepage h-screen bg-cover bg-center flex flex-col justify-center">
-
       <div className="absolute top-4 left-4 cursor-pointer" onClick={() => window.location.href = 'https://smartranks.co/'}>
-        <img src="https://i.imgur.com/fbDATZn.png" alt="Logo" className="h-12 w-auto" />
+        <img src="https://i.imgur.com/fbDATZn.png" alt="SmartRank" className="h-12 w-auto" />
       </div>
-
       <div className="flex flex-col items-end pr-8">
         <header className="text-right mb-4">
           <h1 className="text-6xl font-semibold mb-4">
@@ -40,13 +34,12 @@ export const Homepage = () => {
           Get started
         </button>
       </div>
-
       {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="fixed inset-0 bg-black bg-opacity-50" onClick={closeModal}></div>
           <div className="bg-white rounded-lg shadow-lg p-8 z-50 max-w-lg mx-auto">
-            <Login />
+            <Register />
             <button
               className="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
               onClick={closeModal}
@@ -59,5 +52,4 @@ export const Homepage = () => {
     </div>
   );
 };
-
 export default Homepage;
