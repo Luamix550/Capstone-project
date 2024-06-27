@@ -29,6 +29,10 @@ import sha256 from 'js-sha256';
 export const registerUser = async (req, res) => {
     try {
         const { name, lastname, email, password } = req.body;
+
+        const emailFound = await User.findOne({ email });
+        if (emailFound) return res.status(409).json({ status: 'error', message: 'Email address already exists' });
+
         const passwordHash = await bcrypt.hash(password, 12);
         const avatarHash = sha256(email);
 

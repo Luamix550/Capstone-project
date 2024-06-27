@@ -24,7 +24,7 @@ import Feedback from '../models/feedback.model.js'
  */
 export const allFeedbacks = async (req, res) => {
     try {
-        const tasks = await Feedback.find({ userId: req.userId }).populate('userId');
+        const tasks = await Feedback.find({ userId: req.userId });
         
         if (tasks.length === 0) return res.status(404).json({ status: 'error', message: 'No feedbacks found' });
 
