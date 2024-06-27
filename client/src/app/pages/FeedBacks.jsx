@@ -1,5 +1,4 @@
 import React from 'react'
-import FeedbacksUsers from '../components/FeedbacksUsers';
 import Navbar from "../components/Navbar";
 import HeroSectionFeedbacks from '../components/HeroSection';
 import { Footer } from '../components/Footer';

@@ -1,20 +1,29 @@
-import axios from 'axios';
+"use client"
 import { useForm }from 'react-hook-form';
-import React, { useState } from 'react';
+import { toast } from 'sonner';
+import React, { useEffect, useState } from 'react';
 import { registerRequest } from '../api/auth'
 
 const Register = ({ openLoginModal }) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, setError, formState: { errors } } = useForm();
+  const [ errorInputs, setErrorInputs ] = useState([]);
 
+  const registerUser = async (values) => {
+    registerRequest(values)
+    .catch(err => {
+      setErrorInputs(err.response.data.message);
+      errorInputs.forEach(error => {
+      toast.warning(error);
+    })
+    })
+  }
   return (
     <div className="flex items-center justify-center max-h-screen">
       <div className="w-full max-w-md p-1">
         <h4 className="block font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900 text-center">
           Sign Up
         </h4>
-        <form onSubmit={handleSubmit(values => {
-          registerRequest(values);
-        })} className="mt-8 mb-2 w-full">
+        <form onSubmit={handleSubmit(values => registerUser(values))} className="mt-8 mb-2 w-full">
           <div className="flex flex-col gap-4 mb-6">
             <label className="block font-sans text-base font-semibold leading-relaxed text-blue-gray-900">
               Name
@@ -23,6 +32,7 @@ const Register = ({ openLoginModal }) => {
                 placeholder="Enter name"
                 className="peer h-11 w-full rounded-md border border-blue-gray-200 bg-transparent px-3 py-2 font-sans text-sm text-blue-gray-700 outline-none transition-all focus:border-2 focus:border-gray-900"
               />
+              { errors.name && ( <p className='bg-red-700 rounded text-center text-red-50 font-sans'>Name is required </p> )}
             </label>
             <label className="block font-sans text-base font-semibold leading-relaxed text-blue-gray-900">
               Last name
@@ -31,6 +41,7 @@ const Register = ({ openLoginModal }) => {
                 placeholder="Enter last name"
                 className="peer h-11 w-full rounded-md border border-blue-gray-200 bg-transparent px-3 py-2 font-sans text-sm text-blue-gray-700 outline-none transition-all focus:border-2 focus:border-gray-900"
               />
+              { errors.name && ( <p className='bg-red-700 rounded text-center text-red-50 font-sans'>Last name is required </p> )}
             </label>
             <label className="block font-sans text-base font-semibold leading-relaxed text-blue-gray-900">
               Email address
@@ -40,6 +51,7 @@ const Register = ({ openLoginModal }) => {
                 placeholder="Enter mail address"
                 className="peer h-11 w-full rounded-md border border-blue-gray-200 bg-transparent px-3 py-2 font-sans text-sm text-blue-gray-700 outline-none transition-all focus:border-2 focus:border-gray-900"
               />
+              { errors.name && ( <p className='bg-red-700 rounded text-center text-red-50 font-sans'>Email is required </p> )}
             </label>
             <label className="block font-sans text-base font-semibold leading-relaxed text-blue-gray-900">
               Password
@@ -49,6 +61,7 @@ const Register = ({ openLoginModal }) => {
                 placeholder="********"
                 className="peer h-11 w-full rounded-md border border-blue-gray-200 bg-transparent px-3 py-2 font-sans text-sm text-blue-gray-700 outline-none transition-all focus:border-2 focus:border-gray-900"
               />
+              { errors.name && ( <p className='bg-red-700 rounded text-center text-red-50 font-sans'>Password is required </p> )}
             </label>
           </div>
           <button
