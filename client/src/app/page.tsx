@@ -1,13 +1,12 @@
 "use client"
 import React from "react";
-import Feedbacks from "./pages/FeedBacks";
-import GetStarted from "./pages/GetStarted"
+import Homepage from "./components/Homepage";
+import Navbar from "./components/Navbar";
 
 export default function Home() {
   return (
     <>
-      <Feedbacks></Feedbacks>
-      <GetStarted></GetStarted>
+    <Homepage />
     </>
   );
 }

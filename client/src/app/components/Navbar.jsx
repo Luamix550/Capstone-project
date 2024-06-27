@@ -1,3 +1,5 @@
+"use client"
+
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { profileRequest } from '../api/auth';
@@ -55,7 +57,7 @@ const Navbar = () => {
                 <button 
                   onClick={() => {
                     logOutRequest();
-                    router.push("/feedback")
+                    router.push("/feedbacks")
                   }} 
                   className='block px-5 py-2 text-gray-800 hover:bg-gray-100 w-full text-left'
                 >
