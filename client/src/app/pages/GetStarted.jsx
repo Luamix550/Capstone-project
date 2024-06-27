@@ -1,5 +1,5 @@
 import React from 'react'
-import Homepage from '../components/HomePage'
+import Homepage from '../components/Homepage' 
 
 const GetStarted = () => {
   return (

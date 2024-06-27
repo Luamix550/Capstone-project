@@ -1,11 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import HalfRating from './HalfRating';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { getFeedbacks } from '../api/userFeedback';
 
 const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const feedbackContainerRef = useRef(null);
+  const [ allFeedbacks, setFeedback ] = useState([]);
 
   const toggleExpand = (index) => {
     setExpandedIndex(expandedIndex === index ? null : index);
@@ -22,6 +24,21 @@ const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
       feedbackContainerRef.current.scrollBy({ left: 400, behavior: 'smooth' });
     }
   };
+
+  const getAllFeedbacks = async () => {
+    try {
+      const { data } = await getFeedbacks();
+      setFeedback(data);
+    } catch (error) {
+      console.error('Error fetching feedbacks:', error);
+    }
+  }
+
+  useEffect(() => {
+    getAllFeedbacks();
+  }, []);
+
+  const userFeedbacks = [...allFeedbacks, ...feedbacks];
 
   return (
     <section className="mt-12 md:mt-20 relative">
@@ -42,15 +59,15 @@ const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
             ref={feedbackContainerRef}
             style={{ scrollSnapType: 'x mandatory' }}
           >
-            {feedbacks.length > 0 ? (
-              feedbacks.map((feedback, index) => (
+            {userFeedbacks.length > 0 ? (
+              userFeedbacks.map((feedback, index) => (
                 <div
                   key={index}
                   className={`rounded-xl p-6 border shadow-2xl sm:shadow-2xl border-black bg-white min-w-[100%] sm:min-w-[400px] md:min-w-[640px] lg:min-w-[300px] max-w-[100%] sm:max-w-[400px] md:max-w-[640px] lg:max-w-[800px] h-auto overflow-auto`}
                   role="button"
                   style={{ scrollSnapAlign: 'start' }}
                 >
-                  <HalfRating className="flex items-center" name="read-only" value={feedback.rating} readOnly />
+                  <HalfRating className="flex items-center" name="read-only" value={feedback.current_rating} readOnly />
                   <p className="mb-4 mt-4 text-green-600 font-extrabold text-1xl text-left">
                     {feedback.title}
                   </p>

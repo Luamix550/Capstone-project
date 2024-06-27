@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import HalfRating from './HalfRating';
+import { newFeedback } from '../api/userFeedback'
 
 const Modal = ({ isOpen, onClose, onAddFeedback }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [rating, setRating] = useState(0);
+  const [current_rating, setRating] = useState(0);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddFeedback({ title, description, rating });
+    onAddFeedback({ title, description, current_rating });
+    newFeedback({
+      title,
+      description,
+      current_rating
+    })
     onClose();
   };
 
@@ -51,7 +57,7 @@ const Modal = ({ isOpen, onClose, onAddFeedback }) => {
             <label className="block text-gray-700">Rating</label>
             <HalfRating
               name="feedback-rating"
-              value={rating}
+              value={current_rating}
               onChange={(event, newValue) => setRating(newValue)}
             />
           </div>
