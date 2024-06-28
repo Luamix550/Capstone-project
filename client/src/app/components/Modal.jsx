@@ -6,14 +6,16 @@ const Modal = ({ isOpen, onClose, onAddFeedback }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [current_rating, setRating] = useState(0);
+  const status = 'Not Started';
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddFeedback({ title, description, current_rating });
+    onAddFeedback({ title, description, current_rating, status });
     newFeedback({
       title,
       description,
-      current_rating
+      current_rating,
+      status
     })
     onClose();
   };
@@ -47,7 +49,7 @@ const Modal = ({ isOpen, onClose, onAddFeedback }) => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
-              maxLength={500}
+              maxlength="300"
               minLength={10}
               rows="5"
               cols="30"

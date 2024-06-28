@@ -1,5 +1,4 @@
 "use client"
-
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { profileRequest } from '../api/auth';
@@ -11,9 +10,6 @@ const Navbar = () => {
   const [ avatarProfile, setAvatarProfile ] = useState('');
   const [ userProfile, setUserProfile ] = useState('');
 
-  const navigateToAbout = () => {
-    router.push('/feedback');
-  }
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -57,7 +53,7 @@ const Navbar = () => {
                 <button 
                   onClick={() => {
                     logOutRequest();
-                    router.push("/feedbacks")
+                    router.push("/started")
                   }} 
                   className='block px-5 py-2 text-gray-800 hover:bg-gray-100 w-full text-left'
                 >
