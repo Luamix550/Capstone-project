@@ -31,7 +31,7 @@ export const registerUser = async (req, res) => {
         const { name, lastname, email, password } = req.body;
 
         const emailFound = await User.findOne({ email });
-        if (emailFound) return res.status(409).json({ status: 'error', message: 'Email address already exists' });
+        if (emailFound) return res.status(409).json({ status: 'error', message: ['Email address already exists'] });
 
         const passwordHash = await bcrypt.hash(password, 12);
         const avatarHash = sha256(email);
@@ -91,10 +91,10 @@ export const loginUser = async (req, res) => {
         const { email, password } = req.body;
 
         const userFound = await User.findOne({ email });
-        if (!userFound) return res.status(404).json({ status: 'error', message: 'User not found' });
+        if (!userFound) return res.status(404).json({ status: 'error', message: ['User not found'] });
 
         const isPasswordValid = await bcrypt.compare(password, userFound.password);
-        if (!isPasswordValid) return res.status(403).json({ status: 'error', message: 'Incorrect password' });
+        if (!isPasswordValid) return res.status(403).json({ status: 'error', message: ['Incorrect password'] });
 
         const token = await createAccessToken({ id: userFound._id, rol: userFound.rol });
         res.cookie('token', token);

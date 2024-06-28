@@ -61,7 +61,7 @@ export const getFeedback = async (req, res) => {
     try {
         const feedback = await Feedback.findById(req.params.id);
 
-        if (!feedback) return res.status(404).json({ status: 'error', message: 'Feedback not found' });
+        if (!feedback) return res.status(404).json({ status: 'error', message: ['Feedback not found'] });
 
         res.json(feedback);
 
