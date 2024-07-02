@@ -40,7 +40,7 @@ const Navbar = () => {
           <img src="https://i.imgur.com/PcOLLVm.png" className="h-14" alt="SmartRank" />
         </a>
         <div className="flex items-center space-x-6 rtl:space-x-reverse">
-          <div className='relative flex items-left'>
+          <div className='relative flex items-right'>
             <button
               className="block h-16 w-16 rounded-full overflow-hidden border-2 focus:border-gray-900"
               onClick={toggleDropdown}

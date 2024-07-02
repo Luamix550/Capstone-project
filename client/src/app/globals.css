@@ -5,29 +5,4 @@
 html, body {
   margin: 0;
   padding: 0;
-}
-
-#__next {
-  display: flex;
-  flex-direction: column;
-
-}
-
-
-::-webkit-scrollbar {
-  width: 10px;
-  overflow: smooth
-  ;
-}
-
-::-webkit-scrollbar-track {
-  background: #fffefe;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
+} 

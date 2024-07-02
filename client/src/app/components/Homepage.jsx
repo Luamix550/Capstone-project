@@ -28,16 +28,16 @@ const Homepage = () => {
   return (
     <div className="relative h-screen bg-mobile bg-cover bg-center sm:bg-homepage flex flex-col justify-center">
       <div className="absolute top-4 left-4 cursor-pointer" onClick={() => window.location.href = 'https://smartranks.co/'}>
-        <img src="https://i.imgur.com/fbDATZn.png" alt="Logo" className="h-12 w-auto" />
+        <img src="https://i.imgur.com/fbDATZn.png" alt="Logo" className="h-16 w-auto hover:scale-95 transition duration-300" />
       </div>
-      <div className="flex flex-col items-end pr-8">
+      <div className="flex flex-col items-end pr-24">
         <header className="text-right mb-4">
-          <h1 className="text-6xl font-semibold mb-4">
+          <h1 className="text-7xl font-semibold mb-4 text-black">
             Your voice<span className="text-green-600 font-bold uppercase"> <br />MATTERS!</span>
           </h1>
         </header>
         <article className="prose text-right mb-8 w-6/12">
-          <p className="text-lg break-keep font-semibold text-black-700 container">
+          <p className="text-xl break-keep font-semibold text-black container">
             Help us improve by sharing your honest <span className="text-green-600">feedback</span>.
             <br />
             We listen and use it to make things even better for you.

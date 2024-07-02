@@ -7,7 +7,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/flowbite/**/*.js",
-    "./node_modules/@nextui-org/theme/dist/components/**/*.js"
+    "./node_modules/@nextui-org/theme/dist/components/(modal|scroll-shadow).js"
   ],
   theme: {
     extend: {
@@ -19,7 +19,7 @@ const config: Config = {
     },
   },
   plugins: [
-    nextui()
+    require('daisyui'),
   ],
 };
 
