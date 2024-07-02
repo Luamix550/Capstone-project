@@ -1,33 +1,27 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import { useForm }from 'react-hook-form';
-import { loginRequest, profileRequest } from '../api/auth';
 import { FaSpinner } from "react-icons/fa";
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '../context/authContext';
 
 const Login = () => {
   const router = useRouter();
   const { register, handleSubmit, setError, formState: { errors } } = useForm();
-  const [btnState, setBtnState] = useState(false);
+  const { signIn, user, isAuthenticated, btnState } = useAuth();
 
-  const loginUser = async (values) => {
-    setBtnState(true);
-    try {
-      const user = await loginRequest(values);
-      const { name } = user.data;
-      toast.success(`Welcome back, ${name}!`, { duration: 2000 });
+  useEffect(() => {
+    if (isAuthenticated) {
+      toast.success(`Welcome back, ${user.name}!`, { duration: 2000 });
       setTimeout(() => {
-          router.push('/feedbacks')
-        }, 3000)
+        router.push('/feedbacks')
+      }, 3000)
     }
-    catch(error) {
-      setBtnState(false)
-      const loginErrors = error.response.data.message;
-      loginErrors.forEach(error => {
-        toast.warning(error);
-      })
-    }
+  }, [isAuthenticated]);
+
+  const loginUser = async (user) => {
+    signIn(user);
   }
 
   return (

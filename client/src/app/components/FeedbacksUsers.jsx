@@ -1,17 +1,15 @@
 "use client";
+import { useFeed } from '../context/feedContext';
 import React, { useState, useRef, useEffect } from 'react';
 import HalfRating from './HalfRating';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { getFeedbacks } from '../api/userFeedback';
 import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
 
 const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const feedbackContainerRef = useRef(null);
-  const [allFeedbacks, setFeedback] = useState([]);
-  const router = useRouter();
+  const { allFeedbacks, getAllFeedbacks } = useFeed();
 
   const toggleExpand = (index) => {
     setExpandedIndex(expandedIndex === index ? null : index);
@@ -29,23 +27,11 @@ const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
     }
   };
 
-  const getAllFeedbacks = async () => {
-    try {
-      const { data } = await getFeedbacks();
-      setFeedback(data);
-    } catch (error) {
-      if (error.response.status === 401) {
-        router.push('/unauthorized');
-      }
-    }
-  };
-
   useEffect(() => {
     getAllFeedbacks();
   }, []);
 
   const userFeedbacks = [...allFeedbacks, ...feedbacks];
-
   return (
     <section className="mt-12 md:mt-20 relative">
       <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
