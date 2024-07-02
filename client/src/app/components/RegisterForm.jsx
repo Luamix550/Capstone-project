@@ -1,14 +1,14 @@
 "use client";
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { FaSpinner } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../context/authContext';
 
 const Register = ({ openLoginModal }) => {
   const router = useRouter();
-  const { register, handleSubmit, setError, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const { signUp, isAuthenticated, btnState } = useAuth();
 
   useEffect(() => {
@@ -24,70 +24,68 @@ const Register = ({ openLoginModal }) => {
     signUp(user);
   }
 
-
   return (
     <div className="flex items-center justify-center max-h-screen">
       <div className="w-full max-w-md p-1">
-        <h4 className="block font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900 text-center">
+        <h4 className="block font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-gray-900 text-center">
           Sign Up
         </h4>
         <form onSubmit={handleSubmit(values => registerUser(values))} className="mt-8 mb-2 w-full">
           <div className="flex flex-col gap-4 mb-6">
-            <label className="block font-sans text-base font-semibold leading-relaxed text-blue-gray-900">
+            <label className="block font-sans text-base font-semibold leading-relaxed text-gray-900">
               Name
               <input
                 {...register('name', { required: true })}
                 placeholder="Enter name"
-                className="peer h-11 w-full rounded-md border border-blue-gray-200 bg-transparent px-3 py-2 font-sans text-sm text-blue-gray-700 outline-none transition-all focus:border-2 focus:border-gray-900"
+                className="peer h-11 w-full rounded-md border bg-transparent px-3 py-2 font-sans text-sm text-gray-700 outline-none transition-all focus:border-2 focus:border-white not-empty:border-white"
               />
-              {errors.name && <p className='bg-red-700 rounded text-center text-red-50 font-sans'>Name is required</p>}
+              {errors.name && <p className='bg-red-700 rounded text-center text-red-500 font-sans'>Name is required</p>}
             </label>
-            <label className="block font-sans text-base font-semibold leading-relaxed text-blue-gray-900">
+            <label className="block font-sans text-base font-semibold leading-relaxed text-gray-900">
               Last name
               <input
                 {...register('lastname', { required: true })}
                 placeholder="Enter last name"
-                className="peer h-11 w-full rounded-md border border-blue-gray-200 bg-transparent px-3 py-2 font-sans text-sm text-blue-gray-700 outline-none transition-all focus:border-2 focus:border-gray-900"
+                className="peer h-11 w-full rounded-md border bg-transparent px-3 py-2 font-sans text-sm text-gray-700 outline-none transition-all focus:border-2 focus:border-white not-empty:border-white"
               />
-              {errors.lastname && <p className='bg-red-700 rounded text-center text-red-50 font-sans'>Last name is required</p>}
+              {errors.lastname && <p className='bg-red-700 rounded text-center text-red-500 font-sans'>Last name is required</p>}
             </label>
-            <label className="block font-sans text-base font-semibold leading-relaxed text-blue-gray-900">
+            <label className="block font-sans text-base font-semibold leading-relaxed text-gray-900">
               Email address
               <input
                 {...register('email', { required: true })}
                 type='email'
                 placeholder="Enter mail address"
-                className="peer h-11 w-full rounded-md border border-blue-gray-200 bg-transparent px-3 py-2 font-sans text-sm text-blue-gray-700 outline-none transition-all focus:border-2 focus:border-gray-900"
+                className="peer h-11 w-full rounded-md border bg-white px-3 py-2 font-sans text-sm text-gray-700 outline-none transition-all focus:border-2 focus:border-white not-empty:border-white"
               />
-              {errors.email && <p className='bg-red-700 rounded text-center text-red-50 font-sans'>Email is required</p>}
+              {errors.email && <p className='bg-red-700 rounded text-center text-red-500 font-sans'>Email is required</p>}
             </label>
-            <label className="block font-sans text-base font-semibold leading-relaxed text-blue-gray-900">
+            <label className="block font-sans text-base font-semibold leading-relaxed text-gray-900">
               Password
               <input
                 {...register('password', { required: true })}
                 type="password"
                 placeholder="********"
-                className="peer h-11 w-full rounded-md border border-blue-gray-200 bg-transparent px-3 py-2 font-sans text-sm text-blue-gray-700 outline-none transition-all focus:border-2 focus:border-gray-900"
+                className="peer h-11 w-full rounded-md border bg-transparent px-3 py-2 font-sans text-sm text-gray-700 outline-none transition-all focus:border-2 focus:border-white not-empty:border-white"
               />
-              {errors.password && <p className='bg-red-700 rounded text-center text-red-50 font-sans'>Password is required</p>}
+              {errors.password && <p className='bg-red-700 rounded text-center text-red-500 font-sans'>Password is required</p>}
             </label>
           </div>
-          { !btnState ? (
+          {!btnState ? (
             <button
-              className="mt-4 block w-full select-none rounded-lg bg-green-600 py-3 text-center font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-lg focus:opacity-85 active:opacity-85"
+              className="mt-4 block w-full select-none rounded-lg bg-green-600 py-3 text-center font-sans text-xs font-bold uppercase text-gray-900 shadow-md transition-all hover:shadow-lg focus:opacity-85 active:opacity-85"
               type="submit"
             >
-            
-            Sign Up
+              Sign Up
             </button>
           ) : (
-            <button type="button" className="mt-4 block w-full select-none rounded-lg bg-green-600 py-1 text-center font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-lg focus:opacity-85 active:opacity-85  justify-center" disabled>
+            <button type="button" className="mt-4 block w-full select-none rounded-lg bg-green-600 py-1 text-center font-sans text-xs font-bold uppercase text-gray-900 shadow-md transition-all hover:shadow-lg focus:opacity-85 active:opacity-85 justify-center" disabled>
               <div className='flex row'>
-                <FaSpinner className=' animate-spin h-8 w-5 mr-3 ..." viewBox="0 0 24 24"' />
+                <FaSpinner className='animate-spin h-8 w-5 mr-3' />
                 <p className='flex items-center'>Processing...</p>
               </div>
             </button>
-          ) }
+          )}
           <p className="block mt-4 text-center font-sans text-base font-normal leading-relaxed text-gray-700">
             Already have an account?
             <br />
