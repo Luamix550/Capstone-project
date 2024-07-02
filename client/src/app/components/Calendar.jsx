@@ -58,6 +58,15 @@ const Calendar = ({ onDateChange }) => {
                                     inline
                                 />
                                 </div>
+                                <div className='flex justify-center items-center mt-6'>
+                                <button onClick={(handleClose)}
+                                    type="button" 
+                                    className=" bg-green-600 hover:bg-green-400 text-white font-bold px-4 py-2 rounded-md"
+                                >
+                                Filter
+                                </button>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>

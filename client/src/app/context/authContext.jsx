@@ -58,7 +58,7 @@ export const AuthProvider = ({ children }) => {
             setLoading(false);
         }
         catch(error) {
-            router.push('/unauthorized');
+            // router.push('/unauthorized');
         }
     }
 
