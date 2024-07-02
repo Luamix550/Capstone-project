@@ -3,36 +3,40 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { profileRequest } from '../api/auth';
 import { logOutRequest } from '../api/auth';
+import { useAuth } from '../context/authContext';
 
 const Navbar = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const [ avatarProfile, setAvatarProfile ] = useState('');
-  const [ userProfile, setUserProfile ] = useState('');
-
+  const { user, profile, loading } = useAuth();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  const getProfile = async () => {
-    try {
-      const user = await profileRequest();
-      const { avatar } = user.data;
-      const { name } = user.data;
-      const avatarImgUrl = `https://gravatar.com/avatar/${avatar}?d=mp`;
-      setAvatarProfile(avatarImgUrl);
-      setUserProfile(name);
-    }
-    catch(error) {
-      console.log('Error fetching profile:', error);
-    }
-  }
-
   useEffect(() => {
-    getProfile();
+    profile();
   }, []);
   
+  if (loading) {
+    return (
+      <>
+       <nav className="shadow-lg">
+      <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-6">
+        <a href="https://smartranks.co/" className="flex items-center space-x-3 rtl:space-x-reverse hover:scale-95 transition duration-300">
+          <img src="https://i.imgur.com/PcOLLVm.png" className="h-14" alt="SmartRank" />
+        </a>
+        <div className="flex items-center space-x-6 rtl:space-x-reverse">
+          <div className='relative flex items-left h-16 w-16 '>
+              <img className="h-full w-full object-cover rounded-full " src={`https://gravatar.com/avatar/?d=mp`} alt="Your avatar" />
+          </div>
+        </div>
+      </div>
+    </nav>
+      </>
+    )
+  }
+
   return (
     <nav className="shadow-lg">
       <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-6">
@@ -45,9 +49,9 @@ const Navbar = () => {
               className="block h-16 w-16 rounded-full overflow-hidden border-2 focus:border-gray-900"
               onClick={toggleDropdown}
             >
-              <img className="h-full w-full object-cover" src={avatarProfile} alt="Your avatar" />
+              <img className="h-full w-full object-cover" src={`https://gravatar.com/avatar/${user.avatar}?d=mp`} alt="Your avatar" />
             </button>
-            <p className='pt-5 ml-4'>{userProfile}</p>
+            <p className='pt-5 ml-4'>{user.name}</p>
             {isOpen && (
               <div className='absolute mt-2 w-28 bg-white border-2 rounded-lg shadow-md right-0'>
                 <button 

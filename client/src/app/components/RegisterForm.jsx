@@ -2,34 +2,28 @@
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import React, { useEffect, useState } from 'react';
-import { registerRequest } from '../api/auth';
 import { FaSpinner } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
+import { useAuth } from '../context/authContext';
 
 const Register = ({ openLoginModal }) => {
   const router = useRouter();
   const { register, handleSubmit, setError, formState: { errors } } = useForm();
-  const [errorInputs, setErrorInputs] = useState([]);
-  const [btnState, setBtnState] = useState(false)
+  const { signUp, isAuthenticated, btnState } = useAuth();
 
-  const registerUser = async (values) => {
-    setBtnState(true)
-    try {
-      const response = await registerRequest(values);
+  useEffect(() => {
+    if (isAuthenticated) {
       toast.success('Registration successful', { duration: 2000 });
       setTimeout(() => {
-        router.push('/feedbacks')
-      }, 3000)
-    } catch (err) {
-      setBtnState(false)
-      const newErrorInputs = err.response?.data?.message || ['An unknown error occurred'];
-      setErrorInputs(newErrorInputs);
-      console.log(err);
-      newErrorInputs.forEach(error => {
-        toast.warning(error);
-      });
+        router.push('/feedbacks');
+      }, 3000);
     }
-  };
+  }, [isAuthenticated]);
+
+  const registerUser = async (user) => {
+    signUp(user);
+  }
+
 
   return (
     <div className="flex items-center justify-center max-h-screen">

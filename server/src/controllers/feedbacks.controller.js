@@ -26,7 +26,7 @@ export const allFeedbacks = async (req, res) => {
     try {
         const tasks = await Feedback.find({ userId: req.userId });
         
-        if (tasks.length === 0) return res.status(404).json({ status: 'error', message: 'No feedbacks found' });
+        if (tasks.length === 0) return res.status(404).json({ status: 'error', message: ['No feedbacks found'] });
 
         res.json(tasks);
     } catch (error) {
@@ -57,13 +57,23 @@ export const allFeedbacks = async (req, res) => {
  * @throws {404} If the feedback with the specified ID is not found.
  * @throws {500} If there is a server error while retrieving the feedback.
  */
-export const getFeedback = async (req, res) => {
+export const filterFeedbackDate = async (req, res) => {
+    const { date } = req.body;
     try {
-        const feedback = await Feedback.findById(req.params.id);
+        const feedbacks = await Feedback.find({ userId: req.userId });
+
+        const filterDate = feedbacks.filter(feedback => {
+            const createdDate = feedback.createdAt.toLocaleDateString('en-us', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+            });
+            return createdDate === date; 
+        })
 
         if (!feedback) return res.status(404).json({ status: 'error', message: ['Feedback not found'] });
 
-        res.json(feedback);
+        res.json(filterDate);
 
     } catch (error) {
         console.error('Error fetching feedback:', error);

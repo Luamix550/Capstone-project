@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import HalfRating from './HalfRating';
-import { newFeedback } from '../api/userFeedback';
+import { newFeedback } from '../api/userFeedback'
+import { useFeed } from '../context/feedContext';
 
 const Modal = ({ isOpen, onClose, onAddFeedback }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [current_rating, setRating] = useState(0);
   const status = 'Not Started';
+  const { createFeedback } = useFeed();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onAddFeedback({ title, description, current_rating, status });
-    newFeedback({
+    createFeedback({
       title,
       description,
       current_rating,

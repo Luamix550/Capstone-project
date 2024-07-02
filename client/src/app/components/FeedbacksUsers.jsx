@@ -1,15 +1,21 @@
+"use client";
+import { useFeed } from '../context/feedContext';
 import React, { useState, useRef, useEffect } from 'react';
 import HalfRating from './HalfRating';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { getFeedbacks } from '../api/userFeedback';
+import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-import Calendar from '../components/Calendar';
 
 const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
   const feedbackContainerRef = useRef(null);
-  const [allFeedbacks, setAllFeedbacks] = useState([]);
+  const [allFeedbacks, setFeedback] = useState([]);
   const router = useRouter();
+
+  const toggleExpand = (index) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
 
   const scrollLeft = () => {
     if (feedbackContainerRef.current) {
@@ -26,12 +32,10 @@ const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
   const getAllFeedbacks = async () => {
     try {
       const { data } = await getFeedbacks();
-      setAllFeedbacks(data);
+      setFeedback(data);
     } catch (error) {
-      if (error.response && error.response.status === 401) {
+      if (error.response.status === 401) {
         router.push('/unauthorized');
-      } else {
-        console.error('Error fetching feedbacks:', error);
       }
     }
   };
@@ -41,7 +45,6 @@ const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
   }, []);
 
   const userFeedbacks = [...allFeedbacks, ...feedbacks];
-
   return (
     <section className="mt-12 md:mt-20 relative">
       <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
