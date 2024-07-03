@@ -30,7 +30,7 @@ const Homepage = () => {
       <div className="absolute top-4 left-4 cursor-pointer" onClick={() => window.location.href = 'https://smartranks.co/'}>
         <img src="https://i.imgur.com/fbDATZn.png" alt="Logo" className="h-16 w-auto hover:scale-95 transition duration-300" />
       </div>
-      <div className="flex flex-col items-end pr-24">
+      <div className="flex flex-col items-end pr-5 sm:pr-24">
         <header className="text-right mb-4">
           <h1 className="text-7xl font-semibold mb-4 text-black">
             Your voice<span className="text-green-600 font-bold uppercase"> <br />MATTERS!</span>

@@ -9,7 +9,7 @@ import { AuthProvider } from "../context/authContext";
 const FeedBacks = () => {
   return (
     <AuthProvider>
-    <div className="bg-background-1  bg-cover bg-center ">
+    <div className="bg-background-1  bg-cover bg-center">
       <FeedProvider>
         <Navbar />
         <HeroSectionFeedbacks />
