@@ -6,13 +6,11 @@ const Unauthorized = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const returnHomePage = () => {
-      setTimeout(() => {
-        router.push("/started");
-      }, 5000);
-    };
+    const timer = setTimeout(() => {
+      router.push("/started");
+    }, 5000);
 
-    returnHomePage();
+    return () => clearTimeout(timer);
   }, [router]);
 
   return (
