@@ -59,6 +59,7 @@ export const allFeedbacks = async (req, res) => {
  */
 export const filterFeedbackDate = async (req, res) => {
     const { date } = req.body;
+    console.log(req.body)
     try {
         const feedbacks = await Feedback.find({ userId: req.userId });
 
@@ -71,7 +72,7 @@ export const filterFeedbackDate = async (req, res) => {
             return createdDate === date; 
         })
 
-        if (!feedback) return res.status(404).json({ status: 'error', message: ['Feedback not found'] });
+        if (filterDate.length === 0) return res.status(404).json({ status: 'error', message: ['Feedbacks not found'] });
 
         res.json(filterDate);
 
@@ -172,34 +173,6 @@ export const updateFeedback = async (req, res) => {
 
     } catch (error) {
         console.error('Error updating feedback:', error);
-        res.status(500).json({ status: 'error', message: 'Internal server error' });
-    }
-}
-/**
- * Delete a specific feedback by ID.
- * 
- * Endpoint: DELETE /api/feedbacks/:id
- * 
- * @param {string} req.params.id - ID of the feedback to delete.
- * 
- * @returns {number} Status code 204 indicating successful deletion.
- * 
- * @throws {404} If the feedback with the specified ID is not found.
- * @throws {500} If there is a server error while deleting the feedback.
- */
-export const deleteFeedback = async (req, res) => {
-    const { id } = req.params;
-
-    try {
-
-        const feedback = await Feedback.findByIdAndDelete(id);
-
-        if (!feedback) return res.status(404).json({ status: 'error', message: 'Feedback not found' });
-
-        return res.sendStatus(204);
-        
-    } catch (error) {
-        console.error('Error deleting feedback:', error);
         res.status(500).json({ status: 'error', message: 'Internal server error' });
     }
 }

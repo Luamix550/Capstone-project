@@ -7,9 +7,8 @@ import { validateSchema } from "../middlewares/validateSchema.js";
 const router = Router();
 
 router.get('/', authRequired, allFeedbacks);
-router.get('/filter', authRequired, filterFeedbackDate);
+router.post('/filter', authRequired, filterFeedbackDate);
 router.post('/', authRequired, validateSchema(feedbackSchema), newFeedback);
 router.put('/:id', authRequired, updateFeedback);
-router.delete('/:id', authRequired, deleteFeedback);
 
 export default router;
