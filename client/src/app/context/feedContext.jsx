@@ -1,7 +1,6 @@
 "use client"
 import { createContext, useState, useContext, useEffect } from "react";
 import { filterFeedbacks, getFeedbacks, newFeedback } from '../api/userFeedback';
-import { useRouter } from 'next/navigation';
 import { toast } from "sonner";
 
 export const FeedContext = createContext();
@@ -15,13 +14,12 @@ export const useFeed = () => {
 export const FeedProvider = ({ children }) => {
     const [allFeedbacks, setAllFeedbacks] = useState([]);
     const [filteredFeedbacks, setFilteredFeedbacks] = useState([]);
-    const [showInitialFeedbacks, setShowInitialFeedbacks] = useState(null);
+    const [showInitialFeedbacks, setShowInitialFeedbacks] = useState(true);
 
     const getAllFeedbacks = async () => {
         try {
             const { data } = await getFeedbacks();
             setAllFeedbacks(data);
-            setShowInitialFeedbacks(true);
         }
         catch (error) {
             console.log(error?.response?.data?.message);
@@ -40,13 +38,15 @@ export const FeedProvider = ({ children }) => {
             setShowInitialFeedbacks(false);
         }
         catch (error) {
-            toast(error?.response?.data?.message, {
+            toast.error(error?.response?.data?.message, {
                 description: new Date(Date.now()).toLocaleString('en-us'),
                 position: "bottom-right",
                 action: {
-                  label: "Undo",
-                  onClick: () => console.log("Undo"),
-                }})
+                    label: "Undo",
+                    onClick: () => console.log("Undo"),
+                },
+                className: 'custom-toast'
+            });
         }
     }
 
@@ -59,7 +59,7 @@ export const FeedProvider = ({ children }) => {
             filterFeeds,
             filteredFeedbacks,
             showInitialFeedbacks,
-            setShowInitialFeedbacks
+            setShowInitialFeedbacks,
         }}>
             { children }
         </FeedContext.Provider>
