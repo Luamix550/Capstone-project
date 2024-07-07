@@ -3,6 +3,7 @@ import { createContext, useState, useContext } from "react";
 import { registerRequest, loginRequest, profileRequest } from '../api/auth';
 import { toast } from "sonner";
 import { useRouter } from 'next/navigation';
+import { logOutRequest } from "../api/auth";
 
 export const AuthContext = createContext();
 
@@ -51,6 +52,11 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const logOut = () => {
+        logOutRequest()
+        router.push("/started");
+    }
+
     const profile = async () => {
         try {
             const res = await profileRequest();
@@ -70,7 +76,8 @@ export const AuthProvider = ({ children }) => {
             btnState,
             signIn,
             profile,
-            loading
+            loading,
+            logOut
         }}>
             {children}
         </AuthContext.Provider>
