@@ -1,0 +1,92 @@
+[
+    {
+        "_id": "6685b73eb5a658477ab6bbed",
+        "name": "Juan",
+        "lastname": "Pérez",
+        "email": "juan.perez@example.com",
+        "password": "password123",
+        "avatar": "https://example.com/avatar1.jpg",
+        "rol": "User"
+    },
+    {
+        "_id": "6685b73eb5a658477ab6bbee",
+        "name": "Ana",
+        "lastname": "Gómez",
+        "email": "ana.gomez@example.com",
+        "password": "password456",
+        "avatar": "https://example.com/avatar2.jpg",
+        "rol": "Admin"
+    },
+    {
+        "_id": "6685b73eb5a658477ab6bbef",
+        "name": "Luis",
+        "lastname": "Martínez",
+        "email": "luis.martinez@example.com",
+        "password": "password789",
+        "avatar": "https://example.com/avatar3.jpg",
+        "rol": "User"
+    },
+    {
+        "_id": "6685b73eb5a658477ab6bbf0",
+        "name": "María",
+        "lastname": "Rodríguez",
+        "email": "maria.rodriguez@example.com",
+        "password": "password101",
+        "avatar": "https://example.com/avatar4.jpg",
+        "rol": "Admin"
+    },
+    {
+        "_id": "6685b73eb5a658477ab6bbf1",
+        "name": "Carlos",
+        "lastname": "Hernández",
+        "email": "carlos.hernandez@example.com",
+        "password": "password102",
+        "avatar": "https://example.com/avatar5.jpg",
+        "rol": "User"
+    },
+    {
+        "_id": "6685b73eb5a658477ab6bbf2",
+        "name": "Lucía",
+        "lastname": "García",
+        "email": "lucia.garcia@example.com",
+        "password": "password103",
+        "avatar": "https://example.com/avatar6.jpg",
+        "rol": "Admin"
+    },
+    {
+        "_id": "6685b73eb5a658477ab6bbf3",
+        "name": "Jorge",
+        "lastname": "López",
+        "email": "jorge.lopez@example.com",
+        "password": "password104",
+        "avatar": "https://example.com/avatar7.jpg",
+        "rol": "User"
+    },
+    {
+        "_id": "6685b73eb5a658477ab6bbf4",
+        "name": "Sara",
+        "lastname": "Fernández",
+        "email": "sara.fernandez@example.com",
+        "password": "password105",
+        "avatar": "https://example.com/avatar8.jpg",
+        "rol": "Admin"
+    },
+    {
+        "_id": "6685b73eb5a658477ab6bbf5",
+        "name": "Pedro",
+        "lastname": "Ruiz",
+        "email": "pedro.ruiz@example.com",
+        "password": "password106",
+        "avatar": "https://example.com/avatar9.jpg",
+        "rol": "User"
+    },
+    {
+        "_id": "6685b73eb5a658477ab6bbf6",
+        "name": "Marta",
+        "lastname": "Jiménez",
+        "email": "marta.jimenez@example.com",
+        "password": "password107",
+        "avatar": "https://example.com/avatar10.jpg",
+        "rol": "Admin"
+    }
+]

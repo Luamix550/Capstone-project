@@ -15,6 +15,7 @@ export const authRequired = (req, res, next) => {
 
 export const adminRequire = (req, res, next) => {
     const { token } = req.cookies;
+    console.log(token)
     
     if (!token) return res.status(401).json({ message: 'Unauthorized' });
     jwt.verify(token, TOKEN_SECRET, (error, decodedToken) => {
