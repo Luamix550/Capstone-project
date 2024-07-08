@@ -18,17 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-<<<<<<< HEAD
       <body className={inter.className}>
         <AuthProvider>
           <Toaster richColors position="top-right" expand={true} />
           {children}
         </AuthProvider>
-=======
-      <body className="font-Expletus">
-        <Toaster richColors position="top-right" expand={true} />
-        {children}
->>>>>>> b106e118ee51c0d7b3a405db5e1391e19bbe4e14
       </body>
     </html>
   );

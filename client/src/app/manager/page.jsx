@@ -17,11 +17,9 @@ import {
 import BoxFilter from "@/components/manager/BoxFilter";
 
 function AdministrationComponent() {
-  const [feedbacks, setFeedbacks] = useState<FeedbackType[] | null>(null);
-  const [originalFeedbacks, setOriginalFeedbacks] = useState<
-    FeedbackType[] | null
-  >(null);
-  const [users, setUsers] = useState<userClientType[] | null>(null);
+  const [feedbacks, setFeedbacks] = useState(null);
+  const [originalFeedbacks, setOriginalFeedbacks] = useState(null);
+  const [users, setUsers] = useState(null);
   const [optionView, setOptionView] = useState<string>("kanban");
   const [isOpenFilter, setIsOpenFilter] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -31,7 +29,7 @@ function AdministrationComponent() {
   useEffect(() => {
     const getAllFeedbacks = async () => {
       const response = await axios.get("/api/manager/feedbacks");
-      const data: FeedbackType[] = response?.data;
+      const data = response?.data;
       setFeedbacks(data);
       setOriginalFeedbacks(data); // Store the original feedbacks
     };
@@ -42,19 +40,19 @@ function AdministrationComponent() {
   useEffect(() => {
     const getAllUsers = async () => {
       const response = await axios.get("/api/manager/users");
-      const data: userClientType[] = response?.data;
+      const data = response?.data;
       setUsers(data);
     };
 
     getAllUsers();
   }, []);
 
-  const handleOptionView = (text: string) => {
+  const handleOptionView = (text) => {
     if (text == "users") setIsOpenFilter(false);
     setOptionView(text);
   };
 
-  const handleFilterFeedbacks = (filteredFeedbacks: FeedbackType[]) => {
+  const handleFilterFeedbacks = (filteredFeedbacks) => {
     setFeedbacks(filteredFeedbacks);
   };
 
@@ -192,17 +190,17 @@ function AdministrationComponent() {
 
         {isOpenFilter && optionView == "kanban" && (
           <BoxFilter
-            feedbacks={originalFeedbacks!}
+            feedbacks={originalFeedbacks}
             filter={handleFilterFeedbacks}
           />
         )}
 
         {optionView == "kanban" && (
-          <KanbanTable feedbacks={feedbacks as FeedbackType[]} />
+          <KanbanTable feedbacks={feedbacks} />
         )}
 
         {optionView == "users" && (
-          <UserList users={users as userClientType[]} />
+          <UserList users={users} />
         )}
       </main>
     </>
