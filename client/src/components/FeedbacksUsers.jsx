@@ -1,5 +1,5 @@
 "use client"
-import { useFeed } from '../context/feedContext';
+import { useFeed } from '../app/context/feedContext';
 import React, { useState, useRef, useEffect } from 'react';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';

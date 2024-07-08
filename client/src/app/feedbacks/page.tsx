@@ -1,8 +1,8 @@
 "use client"
 import React, { StrictMode, useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import HeroSectionFeedbacks from "../components/HeroSection";
-import { Footer } from "../components/Footer";
+import Navbar from '@/components/Navbar';
+import HeroSectionFeedbacks from "@/components/HeroSection";
+import { Footer } from "@/components/Footer";
 import { FeedProvider } from "../context/feedContext";
 import { AuthProvider } from "../context/authContext";
 import '../globals.css'

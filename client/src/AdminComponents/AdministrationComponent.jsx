@@ -1,11 +1,10 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from './NavbarAdmin'
 import axios from "axios";
 import { FeedbackType } from "@/types/Feedbacks";
-import KanbanTable from "@/components/manager/KanbanTable";
-import UserList from "@/components/manager/UserList";
+import KanbanTable from "./manager/KanbanTable";
+import UserList from "./manager/UserList";
 import { userClientType } from "@/types/Users";
 import {
   TbChalkboard,
@@ -14,38 +13,29 @@ import {
   TbSearch,
   TbUserCog,
 } from "react-icons/tb";
-import BoxFilter from "@/components/manager/BoxFilter";
+import BoxFilter from "./manager/BoxFilter";
+import { AuthProvider } from "../app/context/authContext";
+import { useAdmin } from '../app/context/adminContext';
+import { toast } from "sonner";
 
 function AdministrationComponent() {
-  const [feedbacks, setFeedbacks] = useState(null);
-  const [originalFeedbacks, setOriginalFeedbacks] = useState(null);
-  const [users, setUsers] = useState(null);
-  const [optionView, setOptionView] = useState<string>("kanban");
-  const [isOpenFilter, setIsOpenFilter] = useState<boolean>(false);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-
-  const [openSearch, setOpenSearch] = useState<boolean>(false);
+  const { feedbacks, getFeedbacks, setFeedbacks, users, getUsers, originalFeedbacks, getUser} = useAdmin();
+  const [optionView, setOptionView] = useState("kanban");
+  const [isOpenFilter, setIsOpenFilter] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const [openSearch, setOpenSearch] = useState(false);
 
   useEffect(() => {
-    const getAllFeedbacks = async () => {
-      const response = await axios.get("/api/manager/feedbacks");
-      const data = response?.data;
-      setFeedbacks(data);
-      setOriginalFeedbacks(data); // Store the original feedbacks
-    };
-
-    getAllFeedbacks();
+    getFeedbacks();
+    getUsers();
   }, []);
 
-  useEffect(() => {
-    const getAllUsers = async () => {
-      const response = await axios.get("/api/manager/users");
-      const data = response?.data;
-      setUsers(data);
-    };
 
-    getAllUsers();
-  }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearchTerm(inputValue)
+  }
 
   const handleOptionView = (text) => {
     if (text == "users") setIsOpenFilter(false);
@@ -61,18 +51,25 @@ function AdministrationComponent() {
   };
 
   useEffect(() => {
-    if (searchTerm.startsWith("user:")) {
-      const userId = searchTerm.split("user:")[1].trim();
-      const filteredFeedbacks = originalFeedbacks?.filter(
-        (feedback) => feedback.userId === userId
-      );
-      setFeedbacks(filteredFeedbacks || []);
-    } else if (searchTerm.startsWith("feedback:")) {
-      const feedbackId = searchTerm.split("feedback:")[1].trim();
-      const filteredFeedbacks = originalFeedbacks?.filter(
+    if (searchTerm) {
+      const userEmail = searchTerm.trim()
+
+      const [userEmailFound] = users.filter((user) => user.email === userEmail);
+
+      if (userEmailFound === undefined) return setFeedbacks([])
+
+      const filteredFeedbacks = originalFeedbacks.filter((feedback) => feedback.userId === userEmailFound._id);
+      
+      setFeedbacks(filteredFeedbacks);
+      
+    } else if (searchTerm) {
+      const feedbackId = searchTerm.trim();
+      const filteredFeedbacks = originalFeedbacks.filter(
         (feedback) => feedback._id === feedbackId
       );
-      setFeedbacks(filteredFeedbacks || []);
+
+      setFeedbacks(filteredFeedbacks);
+
     } else {
       setFeedbacks(originalFeedbacks);
     }
@@ -80,6 +77,7 @@ function AdministrationComponent() {
 
   return (
     <>
+      <AuthProvider>
       <Navbar />
       <main className="flex flex-col mt-2 p-10 max-h-max">
         <div className="flex mb-5">
@@ -108,13 +106,13 @@ function AdministrationComponent() {
           <div className="flex flex-row gap-10">
             <p className="mb-3 mt-3 font-normal text-gray-700 text-sm">
               <span className="p-1 text-gray-500 font-mono bg-gray-200 rounded-md">
-                {`user: <user_id>`}
+                {`<user.email>`}
               </span>{" "}
-              to search for feedbacks by user ID
+              to search for feedbacks by user email
             </p>
             <p className="mb-3 mt-3 font-normal text-gray-700 text-sm">
               <span className="p-1 text-gray-500 font-mono bg-gray-200 rounded-md">
-                {`feedback: <feedback_id>`}
+                {`<feedback_id>`}
               </span>{" "}
               to search for feedbacks by your unique Id
             </p>
@@ -123,7 +121,7 @@ function AdministrationComponent() {
         <div className="flex flex-row gap-3 justify-end">
           {openSearch && (
             <>
-              <form className="flex-1" onSubmit={(e) => e.preventDefault()}>
+              <form className="flex-1" onSubmit={handleSubmit}>
                 <label
                   htmlFor="default-search"
                   className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -154,8 +152,11 @@ function AdministrationComponent() {
                     className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                     placeholder="Search Feedbacks and Users"
                     required
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    value={inputValue}
+                    onChange={({ target }) => {
+                      if (target.value.length === 0) setFeedbacks(originalFeedbacks);
+                      setInputValue(target.value)
+                    }}
                   />
                 </div>
               </form>
@@ -203,6 +204,7 @@ function AdministrationComponent() {
           <UserList users={users} />
         )}
       </main>
+      </AuthProvider>
     </>
   );
 }

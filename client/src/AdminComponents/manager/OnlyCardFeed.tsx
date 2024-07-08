@@ -30,7 +30,6 @@ function OnlyCardFeed({ feedback }: { feedback: FeedbackType }) {
     setOpenModal(!openModal);
   };
 
-  console.log(openModal);
 
   return (
     <>

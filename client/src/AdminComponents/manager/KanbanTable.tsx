@@ -19,7 +19,7 @@ function KanbanTable({ feedbacks }: { feedbacks: FeedbackType[] }) {
       <div className="grid grid-cols-4 gap-5 mt-5">
         <div className="flex flex-col">
           <div className="p-5 flex flex-row justify-between font-bold text-white bg-gray-500 rounded-md">
-            <h3 className="grid place-content-center">Pending</h3>
+            <h3 className="grid place-content-center">No Started</h3>
             <div className="flex flex-row gap-3">
               <p className="p-1 font-normal text-sm">
                 {notStartedFeedbacks?.length}
@@ -40,7 +40,7 @@ function KanbanTable({ feedbacks }: { feedbacks: FeedbackType[] }) {
             {feedbacks
               ?.filter((data) => data.status === "Not Started")
               .map((filteredData) => (
-                <div className="flex flex-col p-1">
+                <div key={filteredData._id} className="flex flex-col p-1">
                   <OnlyCardFeed feedback={filteredData} />
                 </div>
               ))}

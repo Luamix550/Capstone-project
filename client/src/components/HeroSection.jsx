@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Modal from './Modal';
 import FeedbacksUsers from './FeedbacksUsers';
 import ModalCategory from './ModalCategory';
-import "../globals.css";
+import "../app/globals.css";
 
 const HeroSectionFeedbacks = () => {
   const [modalOpen, setModalOpen] = useState(false);

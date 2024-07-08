@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import HalfRating from './HalfRating';
-import { useFeed } from '../context/feedContext';
+import { useFeed } from '../app/context/feedContext';
 
 const Modal = ({ isOpen, onClose, onAddFeedback, category, prevCloseModal }) => {
   const [title, setTitle] = useState('');

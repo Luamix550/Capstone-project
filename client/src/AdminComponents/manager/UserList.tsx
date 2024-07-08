@@ -9,7 +9,7 @@ function UserList({ users }: { users: userClientType[] }) {
 
       <div className="h-20 flex flex-col gap-6">
         {users &&
-          users?.map((user) => (
+          users.map((user) => (
             <div key={user._id}>
               <CardUser user={user} />
             </div>

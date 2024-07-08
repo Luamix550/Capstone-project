@@ -13,8 +13,7 @@ function BoxFilter({
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [selectedRating, setSelectedRating] = useState<string>("all");
   const [selectedStatus, setSelectedStatus] = useState<string>("all");
-
-  console.log(selectedRating, selectedStatus, selectedDate);
+  // console.log(selectedRating, selectedStatus, selectedDate);
 
   const handlerFilter = () => {
     let filteredFeedbacks = feedbacks;
@@ -22,7 +21,11 @@ function BoxFilter({
     if (!feedbacks || feedbacks.length === 0) throw new Error("Sin feedbacks");
 
     const selectDateObject = selectedDate ? new Date(selectedDate) : null;
-    console.log(selectDateObject);
+    const dataSelect = selectDateObject?.toLocaleDateString('en-us', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
 
     if (selectDateObject) {
       filteredFeedbacks = filteredFeedbacks.filter((feedback) => {
@@ -114,7 +117,7 @@ function BoxFilter({
             <option value="all" selected>
               All
             </option>
-            <option value="Not Started">Pending</option>
+            <option value="Not Started">Not Started</option>
             <option value="In Progress">In Progress</option>
             <option value="Done">Done</option>
             <option value="Archived">Archived</option>

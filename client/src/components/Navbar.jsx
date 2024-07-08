@@ -1,8 +1,7 @@
 "use client"
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import { logOutRequest } from '../api/auth';
-import { useAuth } from '../context/authContext';
+import { useAuth } from '../app/context/authContext';
 
 const Navbar = () => {
   const router = useRouter();
