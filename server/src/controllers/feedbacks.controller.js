@@ -59,7 +59,6 @@ export const allFeedbacks = async (req, res) => {
  */
 export const filterFeedbackDate = async (req, res) => {
     const { date } = req.body;
-    console.log(req.body)
     try {
         const feedbacks = await Feedback.find({ userId: req.userId });
 
@@ -105,15 +104,17 @@ export const filterFeedbackDate = async (req, res) => {
  * @throws {500} If there is a server error while creating the feedback.
  */
 export const newFeedback = async (req, res) => {
+    console.log(req.body)
     try {
         const userId = req.userId;
-        const { title, description, current_rating } = req.body;
+        const { title, description, current_rating, category } = req.body;
 
         const newFeedback = new Feedback({
             userId,
             title,
             description,
-            current_rating
+            current_rating,
+            category
         });
 
         const saveFeedback = await newFeedback.save();

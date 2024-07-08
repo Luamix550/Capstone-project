@@ -33,6 +33,10 @@ const newFeedback = new mongoose.Schema({
         enum: ['Not Started', 'In Progress', 'Done'],
         default: 'Not Started',
     },
+    category: {
+        type: String,
+        enum: ['Congratulations', 'Complaint', 'Suggestion'],
+    }
 }, {
     timestamps: true,
 });

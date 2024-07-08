@@ -1,5 +1,5 @@
 import { nextui } from '@nextui-org/theme';
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -17,6 +17,16 @@ const config: Config = {
         'mobile': "url('https://i.imgur.com/JfV72lb.png')",
         'unauthorized': "url('https://i.imgur.com/pLeUvPM.png')"
       },
+      fontFamily: {
+        GaMaamli: ["'Ga Maamli'", "sans-serif"],
+        Bebas: ["'Bebas Neue'", "sans-serif"],
+        Alfa: ["'Alfa Slab One'", "serif"],
+        Anton: ["'Anton SC'", "sans-serif"],
+        Merienda: ["'Merienda'", "cursive"],
+        Expletus: ["'Expletus Sans'", "sans-serif"],
+        Inter: ["'Inter'", "sans-serif"],
+        DmSans: ["'DM Sans'", "sans-serif"]
+      },
     },
   },
   plugins: [
@@ -25,3 +35,4 @@ const config: Config = {
 };
 
 export default config;
+

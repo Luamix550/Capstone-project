@@ -40,13 +40,13 @@ const Calendar = () => {
             </button>
 
             {open && (
-                <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
+                <div className="fixed inset-0 flex justify-center items-center backdrop-blur-xl bg-black bg-opacity-50 z-50">
                     <div className="relative w-full max-w-md">
                         <div className="relative bg-white rounded-lg border shadow-xl">
                             <div className="flex items-center justify-between p-2 md:p-5 ">
                                 <button 
                                     type="button" 
-                                    className="text-sm absolute top-3 right-3 bg-red-500 hover:bg-red-800 text-white font-bold py-1 px-2.5 rounded-full"
+                                    className="text-sm absolute top-3 right-3  text-black font-bold py-1 px-2.5 rounded-full"
                                     onClick={handleClose}
                                 >
                                     <svg className="w-3 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">

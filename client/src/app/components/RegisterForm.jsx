@@ -37,18 +37,18 @@ const Register = ({ openLoginModal }) => {
               <input
                 {...register('name', { required: true })}
                 placeholder="Enter name"
-                className="peer h-11 w-full rounded-md border bg-transparent px-3 py-2 font-sans text-sm text-gray-700 outline-none transition-all focus:border-2 focus:border-white not-empty:border-white"
+                className="peer h-11 w-full rounded-md border border-gray-400 bg-transparent px-3 py-2 font-sans text-sm text-blue-gray-700 outline-none transition-all focus:border-2 focus:border-gray-900"
               />
-              {errors.name && <p className='bg-red-700 rounded text-center text-red-500 font-sans'>Name is required</p>}
+              {errors.name && <p className='bg-red-700 rounded text-center text-white font-sans'>Name is required</p>}
             </label>
             <label className="block font-sans text-base font-semibold leading-relaxed text-gray-900">
               Last name
               <input
                 {...register('lastname', { required: true })}
                 placeholder="Enter last name"
-                className="peer h-11 w-full rounded-md border bg-transparent px-3 py-2 font-sans text-sm text-gray-700 outline-none transition-all focus:border-2 focus:border-white not-empty:border-white"
+                className="peer h-11 w-full rounded-md border border-gray-400 bg-transparent px-3 py-2 font-sans text-sm text-blue-gray-700 outline-none transition-all focus:border-2 focus:border-gray-900"
               />
-              {errors.lastname && <p className='bg-red-700 rounded text-center text-red-500 font-sans'>Last name is required</p>}
+              {errors.lastname && <p className='bg-red-700 rounded text-center text-white font-sans'>Last name is required</p>}
             </label>
             <label className="block font-sans text-base font-semibold leading-relaxed text-gray-900">
               Email address
@@ -56,9 +56,9 @@ const Register = ({ openLoginModal }) => {
                 {...register('email', { required: true })}
                 type='email'
                 placeholder="Enter mail address"
-                className="peer h-11 w-full rounded-md border bg-white px-3 py-2 font-sans text-sm text-gray-700 outline-none transition-all focus:border-2 focus:border-white not-empty:border-white"
+                className="peer h-11 w-full rounded-md border border-gray-400 bg-transparent px-3 py-2 font-sans text-sm text-blue-gray-700 outline-none transition-all focus:border-2 focus:border-gray-900"
               />
-              {errors.email && <p className='bg-red-700 rounded text-center text-red-500 font-sans'>Email is required</p>}
+              {errors.email && <p className='bg-red-700 rounded text-center text-white font-sans'>Email is required</p>}
             </label>
             <label className="block font-sans text-base font-semibold leading-relaxed text-gray-900">
               Password
@@ -66,22 +66,22 @@ const Register = ({ openLoginModal }) => {
                 {...register('password', { required: true })}
                 type="password"
                 placeholder="********"
-                className="peer h-11 w-full rounded-md border bg-transparent px-3 py-2 font-sans text-sm text-gray-700 outline-none transition-all focus:border-2 focus:border-white not-empty:border-white"
+                className="peer h-11 w-full rounded-md border border-gray-400 bg-transparent px-3 py-2 font-sans text-sm text-blue-gray-700 outline-none transition-all focus:border-2 focus:border-gray-900"
               />
-              {errors.password && <p className='bg-red-700 rounded text-center text-red-500 font-sans'>Password is required</p>}
+              {errors.password && <p className='bg-red-700 rounded text-center text-white font-sans'>Password is required</p>}
             </label>
           </div>
           {!btnState ? (
             <button
-              className="mt-4 block w-full select-none rounded-lg bg-green-600 py-3 text-center font-sans text-xs font-bold uppercase text-gray-900 shadow-md transition-all hover:shadow-lg focus:opacity-85 active:opacity-85"
+              className="mt-4 block w-full select-none rounded-lg bg-green-600 py-3 text-center font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-lg focus:opacity-85 active:opacity-85"
               type="submit"
             >
               Sign Up
             </button>
           ) : (
-            <button type="button" className="mt-4 block w-full select-none rounded-lg bg-green-600 py-1 text-center font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-lg focus:opacity-85 active:opacity-85  justify-center" disabled>
+            <button type="button" className="mt-4 block w-full select-none rounded-lg bg-green-600 py-1 text-center font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-lg focus:opacity-85 active:opacity-85 flex justify-center" disabled>
               <div className='flex row'>
-                <FaSpinner className='animate-spin h-8 w-5 mr-3' />
+                <FaSpinner className=' animate-spin h-8 w-5 mr-3 ..." viewBox="0 0 24 24"' />
                 <p className='flex items-center'>Processing...</p>
               </div>
             </button>

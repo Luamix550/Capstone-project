@@ -153,6 +153,7 @@ export const profile = async (req, res) => {
         lastname: userFound.lastname,
         email: userFound.email,
         avatar: userFound.avatar,
+        rol: userFound.rol,
         createdAt: userFound.createdAt,
         updatedAt: userFound.updatedAt,
     });

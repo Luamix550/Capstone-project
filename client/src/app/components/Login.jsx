@@ -38,9 +38,9 @@ const Login = () => {
                 { ...register('email', { required: true })}
                 type='email'
                 placeholder="Enter mail address"
-                className="peer h-11 w-full rounded-md border border-blue-gray-200 bg-transparent px-3 py-2 font-sans text-sm text-blue-gray-700 outline-none transition-all focus:border-2 focus:border-gray-900"
+                className="peer h-11 w-full rounded-md border border-gray-400 bg-transparent px-3 py-2 font-sans text-sm text-blue-gray-700 outline-none transition-all focus:border-2 focus:border-gray-900"
               />
-              {errors.email && <p className='bg-red-700 rounded text-center text-red-500 font-sans'>Email is required</p>}
+              {errors.email && <p className='bg-red-700 rounded text-center text-white font-sans'>Email is required</p>}
             </label>
             <label className="block font-sans text-base font-semibold leading-relaxed text-gray-900">
               Password
@@ -48,9 +48,9 @@ const Login = () => {
                 { ...register('password', { required: true })}
                 type="password"
                 placeholder="********"
-                className="peer h-11 w-full rounded-md border border-blue-gray-200 bg-transparent px-3 py-2 font-sans text-sm text-blue-gray-700 outline-none transition-all focus:border-2 focus:border-gray-900"
+                className="peer h-11 w-full rounded-md border border-gray-400 bg-transparent px-3 py-2 font-sans text-sm text-blue-gray-700 outline-none transition-all focus:border-2 focus:border-gray-900"
               />
-              {errors.password && <p className='bg-red-700 rounded text-center text-red-500 font-sans'>Password is required</p>}
+              {errors.password && <p className='bg-red-700 rounded text-center text-white font-sans'>Password is required</p>}
             </label>
           </div>
           { !btnState ? (

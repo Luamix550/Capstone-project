@@ -1,25 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import HalfRating from './HalfRating';
-import { newFeedback } from '../api/userFeedback'
 import { useFeed } from '../context/feedContext';
 
-const Modal = ({ isOpen, onClose, onAddFeedback }) => {
+const Modal = ({ isOpen, onClose, onAddFeedback, category, prevCloseModal }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [current_rating, setRating] = useState(0);
   const status = 'Not Started';
   const { createFeedback } = useFeed();
 
+
+  const closeModals = () => {
+    onClose();
+    prevCloseModal();
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddFeedback({ title, description, current_rating, status });
+    onAddFeedback({ title, description, current_rating, status, category });
     createFeedback({
       title,
       description,
       current_rating,
-      status
+      status,
+      category
     });
-    onClose();
+    closeModals();
   };
 
   useEffect(() => {
@@ -36,8 +42,13 @@ const Modal = ({ isOpen, onClose, onAddFeedback }) => {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white rounded-lg p-8 w-full max-w-md mx-auto">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="flex items-center pl-28 text-xl font-semibold text-black gap-1">Add new <span className='text-green-600'>Feedback</span></h2>
-          <button onClick={onClose} className="text-sm bg-red-500 hover:bg-red-800 text-white font-bold py-1.5 px-1.5 rounded-full">
+          <button onClick={onClose}>
+           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+          </svg>
+          </button>
+          <h2 className="flex-col items-center pl-28 text-xl font-semibold text-black mr-16 gap-1">Add new <span className='text-green-600'>Feedback</span></h2>
+          <button onClick={closeModals} className="text-sm text-black font-bold py-1.5 px-1.5 rounded-full">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
           </svg>
@@ -52,7 +63,7 @@ const Modal = ({ isOpen, onClose, onAddFeedback }) => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
-              maxLength="20"
+              maxLength="50"
               minLength={10}
             />
           </div>

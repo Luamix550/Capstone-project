@@ -32,7 +32,7 @@ const newUser = new mongoose.Schema({
     rol: {
         type: String,
         enum: ['User', 'Admin'],
-        default: 'Admin',
+        default: 'User',
     },
 }, {
     timestamps: true,
