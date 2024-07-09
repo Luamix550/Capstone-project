@@ -63,7 +63,8 @@ function AdministrationComponent() {
       setFeedbacks(filteredFeedbacks);
       
     } else if (searchTerm.startsWith("feedback:")) {
-      const feedbackCategory = searchTerm.split("feedback:")[1].trim();;
+      const feedbackCategory = searchTerm.split("feedback:")[1].trim();
+      
       const filteredFeedbacks = originalFeedbacks.filter(
         (feedback) => feedback.category === feedbackCategory
       );
