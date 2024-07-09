@@ -61,10 +61,15 @@ export const AuthProvider = ({ children }) => {
         try {
             const res = await profileRequest();
             setUser(res.data);
-            setLoading(false);
+            
+            setTimeout(() => {
+                setLoading(false);
+            }, 5000)
         }
         catch(error) {
-            router.push('/unauthorized');
+            setTimeout(() => {
+                router.push('/unauthorized');
+            }, 5000)
         }
     }
 
@@ -77,7 +82,8 @@ export const AuthProvider = ({ children }) => {
             signIn,
             profile,
             loading,
-            logOut
+            logOut,
+            setLoading
         }}>
             {children}
         </AuthContext.Provider>

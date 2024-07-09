@@ -1,8 +1,10 @@
 "use client"
 import { useContext, createContext, useState } from "react";
-import { getAllFeedbacks, getAllUsers, getUser, updateRol } from "../api/admin";
-export const AdminContext = createContext();
+import { getAllFeedbacks, getAllUsers, updateFeed, updateRol } from "../api/admin";
 import { toast } from "sonner";
+import { useRouter } from 'next/navigation';
+
+export const AdminContext = createContext();
 
 export const useAdmin = () => {
     const context = useContext(AdminContext);
@@ -11,15 +13,22 @@ export const useAdmin = () => {
 }
 
 export const AdminProvider = ({children}) => {
+    const router = useRouter();
     const [feedbacks, setFeedbacks] = useState([]);
     const [originalFeedbacks, setOriginalFeedbacks] = useState([]);
+    const [originalUsers, setOriginalUsers] = useState([]);
     const [users, setUsers] = useState([]);
 
     const getFeedbacks = async () => {
-        const res = await getAllFeedbacks();
-        const data = res?.data;
-        setFeedbacks(data);
-        setOriginalFeedbacks(data);
+        try {
+            const res = await getAllFeedbacks();
+            const data = res?.data;
+            setFeedbacks(data);
+            setOriginalFeedbacks(data);
+        }
+        catch(error) {
+            router.push('/unauthorized');
+        }
     } 
 
     const getUsers = async () => {
@@ -27,6 +36,7 @@ export const AdminProvider = ({children}) => {
             const res = await getAllUsers();
             const users = res?.data;
             setUsers(users);
+            setOriginalUsers(users)
         }
         catch (error) {
             console.log(error);
@@ -52,6 +62,15 @@ export const AdminProvider = ({children}) => {
         }
     }
 
+    const updateFeedback = async (data) => {
+        try {
+            const res = await updateFeed(data);
+        }
+        catch(error) {
+            console.log(error);
+        }
+    }
+
     return (
         <AdminContext.Provider value={{
             feedbacks,
@@ -61,7 +80,10 @@ export const AdminProvider = ({children}) => {
             getUsers,
             updateUserRol,
             originalFeedbacks,
-            getUser
+            updateFeedback,
+            setUsers,
+            originalUsers,
+            setOriginalFeedbacks
         }}>
             {children}
         </AdminContext.Provider>

@@ -1,33 +1,12 @@
-"use client"
-import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
-import { useAuth } from '../app/context/authContext';
+import { useAuth } from '../../context/authContext';
 
 const Navbar = () => {
-  const { user, profile, loading, logOut } = useAuth();
+  const { user, profile, logOut } = useAuth();
 
   useEffect(() => {
     profile();
   }, []);
-
-  if (loading) {
-    return (
-      <>
-       <nav className="shadow-lg">
-      <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-6">
-        <a href="https://smartranks.co/" className="flex items-center space-x-3 rtl:space-x-reverse hover:scale-95 transition duration-300">
-          <img src="https://i.imgur.com/PcOLLVm.png" className="h-14" alt="SmartRank" />
-        </a>
-        <div className="flex items-center space-x-6 rtl:space-x-reverse">
-          <div className='relative flex items-left h-16 w-16 '>
-              <img className="h-full w-full object-cover rounded-full " src={`https://gravatar.com/avatar/?d=mp`} alt="Your avatar" />
-          </div>
-        </div>
-      </div>
-    </nav>
-      </>
-    )
-  }
 
   return (
     <nav className="shadow-lg">
@@ -47,8 +26,8 @@ const Navbar = () => {
                 <button className='hover:scale-110 transition duration-300 rounded-md border-2 hover:border-gray-900'
                   onClick={logOut}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
                   </svg>
 
                 </button>

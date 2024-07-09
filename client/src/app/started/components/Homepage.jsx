@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import Register from '../components/RegisterForm'
+import Register from './RegisterForm'
 import Login from './Login';
 
 const Homepage = () => {
@@ -76,8 +76,8 @@ const Homepage = () => {
           <div className="fixed inset-0 backdrop-blur-xl bg-black bg-opacity-50 " onClick={closeLoginModal}></div>
           <div className="relative bg-white rounded-lg shadow-lg p-5 z-50 max-w-lg mx-auto">
           <button onClick={loginReturnRegister}>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
           </svg>
           </button>
           <button onClick={closeLoginModal} className="absolute top-3 right-3 py-1 px-2.5">

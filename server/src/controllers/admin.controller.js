@@ -80,7 +80,7 @@ export const updateFeedback = async (req, res) => {
             hour12: true,
         });
 
-        if (req.body.hasOwnProperty('status')) await mailByStatusFeedBack(feedback.userId, date, feedback);
+        // if (req.body.hasOwnProperty('status')) await mailByStatusFeedBack(feedback.userId, date, feedback);
 
         res.json(feedback);
     } catch (error) {

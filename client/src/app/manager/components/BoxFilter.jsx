@@ -1,19 +1,9 @@
-"use client";
-
-import { FeedbackType } from "@/types/Feedbacks";
 import React, { useState } from "react";
 
-function BoxFilter({
-  feedbacks,
-  filter,
-}: {
-  filter: (feedbacks: FeedbackType[]) => void;
-  feedbacks: FeedbackType[];
-}) {
-  const [selectedDate, setSelectedDate] = useState<string>("");
-  const [selectedRating, setSelectedRating] = useState<string>("all");
-  const [selectedStatus, setSelectedStatus] = useState<string>("all");
-  // console.log(selectedRating, selectedStatus, selectedDate);
+function BoxFilter({ feedbacks, filter }) {
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedRating, setSelectedRating] = useState("all");
+  const [selectedStatus, setSelectedStatus] = useState("all");
 
   const handlerFilter = () => {
     let filteredFeedbacks = feedbacks;
@@ -45,15 +35,12 @@ function BoxFilter({
           feedback.current_rating &&
           feedback.current_rating.toString() === selectedRating
       );
-
-      //   console.log(filteredFeedbacks)
     }
 
     if (selectedStatus !== "all") {
       filteredFeedbacks = filteredFeedbacks.filter(
         (feedback) => feedback?.status === selectedStatus
       );
-      //   console.log(filteredFeedbacks)
     }
 
     filter(filteredFeedbacks);

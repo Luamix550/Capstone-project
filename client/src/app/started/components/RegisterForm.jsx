@@ -4,7 +4,7 @@ import { toast } from 'sonner';
 import React, { useEffect } from 'react';
 import { FaSpinner } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
-import { useAuth } from '../app/context/authContext';
+import { useAuth } from '../../context/authContext';
 
 const Register = ({ openLoginModal }) => {
   const router = useRouter();

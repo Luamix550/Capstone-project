@@ -1,8 +1,7 @@
-import { useAdmin } from "@/app/context/adminContext";
-import { userClientType } from "@/types/Users";
 import React from "react";
+import { useAdmin } from "../../context/adminContext";
 
-function CardUser({ user }: { user: userClientType }) {
+function CardUser({ user }) {
   const { updateUserRol } = useAdmin();
 
   return (

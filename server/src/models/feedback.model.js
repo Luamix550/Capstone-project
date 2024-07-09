@@ -30,7 +30,7 @@ const newFeedback = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['Not Started', 'In Progress', 'Done'],
+        enum: ['Not Started', 'In Progress', 'Done', 'Archived'],
         default: 'Not Started',
     },
     category: {

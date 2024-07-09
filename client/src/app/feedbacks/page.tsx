@@ -1,23 +1,32 @@
 "use client"
-import React, { StrictMode, useEffect, useState } from "react";
-import Navbar from '@/components/Navbar';
-import HeroSectionFeedbacks from "@/components/HeroSection";
-import { Footer } from "@/components/Footer";
-import { FeedProvider } from "../context/feedContext";
-import { AuthProvider } from "../context/authContext";
 import '../globals.css'
+import React, { StrictMode, useEffect, useState } from "react";
+import Navbar from './components/Navbar';
+import HeroSectionFeedbacks from "./components/HeroSection";
+import { Footer } from "./components/Footer";
+import { useAuth } from "../context/authContext";
+import ReactLoading from "react-loading";
 
 const FeedBacks = () => {
+  const { profile, loading } = useAuth();
+
+    useEffect(() => {
+        profile();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center min-h-screen bg-background-1">
+                <ReactLoading type={"spinningBubbles"} color="#047857" className="w-96 h-96"/>
+            </div>
+        )
+    }
   return (
-    <AuthProvider>
       <div className="bg-background-1  bg-cover bg-center">
-        <FeedProvider>
           <Navbar />
           <HeroSectionFeedbacks />
           <Footer />
-        </FeedProvider>
       </div>
-    </AuthProvider>
   );
 };
 
