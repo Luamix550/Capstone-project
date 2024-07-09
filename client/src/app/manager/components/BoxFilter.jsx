@@ -21,7 +21,6 @@ function BoxFilter({ feedbacks, filter }) {
       filteredFeedbacks = filteredFeedbacks.filter((feedback) => {
         const feedbackDate = new Date(feedback.createdAt);
 
-        // Comparar solo año, mes y día
         const selectedDateString = selectDateObject.toISOString().split("T")[0];
         const feedbackDateString = feedbackDate.toISOString().split("T")[0];
 
@@ -50,7 +49,7 @@ function BoxFilter({ feedbacks, filter }) {
     <div className="p-10 flex flex-row gap-10 mt-5 justify-between rounded-md drop-shadow-md">
       <div className="flex flex-row gap-10">
         <div>
-          <h5 className="text-green-700 font-bold">Date</h5>
+          <h5 className="text-green-700 font-bold text-2xl mb-2">Date</h5>
           <div className="relative max-w-sm">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
               <svg
@@ -68,17 +67,17 @@ function BoxFilter({ feedbacks, filter }) {
               datepicker-autoselect-today
               type="date"
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="text-gray-900 text-sm rounded-lg block w-full ps-10 p-3 bg-slate-100 placeholder-gray-100"
               placeholder="Select date"
             />
           </div>
         </div>
 
         <form className="max-w-sm">
-          <h5 className="text-green-700 font-bold">Ratings</h5>
+          <h5 className="text-green-700 font-bold text-2xl mb-2">Ratings</h5>
           <select
             id="countries"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="text-gray-900 text-sm rounded-lg block w-full ps-4 p-3 bg-slate-100 placeholder-gray-100 "
             value={selectedRating}
             onChange={(e) => setSelectedRating(e.target.value)}
           >
@@ -94,10 +93,10 @@ function BoxFilter({ feedbacks, filter }) {
         </form>
 
         <form className="max-w-sm">
-          <h5 className="text-green-700 font-bold">Status</h5>
+          <h5 className="text-green-700 font-bold text-2xl mb-2">Status</h5>
           <select
             id="countries"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="text-gray-900 text-sm rounded-lg block w-full ps-4 p-3 bg-slate-100 placeholder-gray-100"
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
           >
@@ -114,7 +113,7 @@ function BoxFilter({ feedbacks, filter }) {
 
       <button
         onClick={handlerFilter}
-        className="bg-green-700 text-white rounded-lg px-4 py-2"
+        className="rounded-lg mt-9 shadow-xl bg-gradient-to-r from-green-700 to-green-500 h-12 w-32 font-semibold text-white hover:bg-green-400 hover:scale-110 transition duration-300"
       >
         Apply Filters
       </button>

@@ -15,7 +15,9 @@ const config: Config = {
         'background-1': "url('https://i.imgur.com/YRrcv1H.png')",
         'homepage': "url('https://i.imgur.com/dY8a3MA.png')",
         'mobile': "url('https://i.imgur.com/JfV72lb.png')",
-        'unauthorized': "url('https://i.imgur.com/pLeUvPM.png')"
+        'unauthorized': "url('https://i.imgur.com/pLeUvPM.png')",
+        'admin': "url('https://i.imgur.com/x4ddXxw.png')",
+        'load': "url('https://i.imgur.com/bDRIcqr.png')"
       },
       fontFamily: {
         GaMaamli: ["'Ga Maamli'", "sans-serif"],

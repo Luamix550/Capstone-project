@@ -82,7 +82,7 @@ function AdministrationComponent() {
         <div className="flex mb-5">
           <div className="flex flex-row gap-3">
             <button
-              className="align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg border border-gray-900 text-gray-900 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] flex items-center gap-3"
+              className="flex gap-4 rounded-lg shadow-xl bg-gradient-to-r from-green-700 to-green-500  px-8 py-4 text-base font-semibold text-white hover:bg-green-400 hover:scale-110 transition duration-300"
               type="button"
               onClick={() => handleOptionView("kanban")}
             >
@@ -91,7 +91,7 @@ function AdministrationComponent() {
             </button>
 
             <button
-              className="align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg border border-gray-900 text-gray-900 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] flex items-center gap-3"
+              className="flex gap-4 rounded-lg  shadow-xl bg-gradient-to-r from-green-700 to-green-500  px-8 py-4 text-base font-semibold text-white hover:bg-green-400 hover:scale-110 transition duration-300"
               type="button"
               onClick={() => handleOptionView("users")}
             >
@@ -122,7 +122,7 @@ function AdministrationComponent() {
               <span className="p-1 text-gray-500 font-mono bg-gray-200 rounded-md">
                 {`<User email>`}
               </span>{" "}
-              to search user by email
+              to search user by email.
             </p>
           </div>
         )}
@@ -139,7 +139,7 @@ function AdministrationComponent() {
                 <div className="relative">
                   <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                     <svg
-                      className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                      className="w-2 h4 text-gray-500 text-gray-400"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -157,7 +157,7 @@ function AdministrationComponent() {
                   <input
                     type="search"
                     id="default-search"
-                    className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                    className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg  placeholder-gray-500 text-gray-900"
                     placeholder="Search Feedbacks and Users"
                     required
                     value={inputValue}
@@ -182,7 +182,7 @@ function AdministrationComponent() {
                 <div className="relative">
                   <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                     <svg
-                      className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                      className="w-4 h-2 text-gray-500 dark:text-gray-400"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -200,7 +200,7 @@ function AdministrationComponent() {
                   <input
                     type="search"
                     id="default-search"
-                    className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                    className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg  placeholder-gray-500 text-gray-900"
                     placeholder="Search User"
                     required
                     value={inputValue}
@@ -216,7 +216,7 @@ function AdministrationComponent() {
 
           {openSearch && (
             <div
-              className="grid place-content-center p-4 bg-slate-200 hover:bg-slate-300 cursor-pointer rounded-md"
+              className="grid place-content-center p-4 bg-slate-100 hover:bg-slate-200 border-black cursor-pointer rounded-md"
               onClick={() => setOpenSearch(false)}
             >
               <TbPlaystationX size={20} />
@@ -224,7 +224,7 @@ function AdministrationComponent() {
           )}
           {!openSearch && (
             <div
-              className="grid place-content-center p-4 bg-slate-200 hover:bg-slate-300 cursor-pointer rounded-md"
+              className="grid place-content-center p-4 bg-slate-100 hover:bg-slate-200 border-black cursor-pointer rounded-md"
               onClick={() => setOpenSearch(true)}
             >
               <TbSearch size={20} />
@@ -232,7 +232,7 @@ function AdministrationComponent() {
           )}
           {optionView == "kanban" && (
             <div
-              className="grid place-content-center pt-1 pb-1 pl-4 pr-4 bg-slate-200 hover:bg-slate-300 cursor-pointer rounded-md"
+              className="grid place-content-center pt-1 pb-1 pl-4 pr-4 bg-slate-100 hover:bg-slate-200 border-5 border-black cursor-pointer rounded-md"
               onClick={handleOpenFilter}
             >
               <TbFilter size={20} />
