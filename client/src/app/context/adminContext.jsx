@@ -27,7 +27,7 @@ export const AdminProvider = ({children}) => {
             setOriginalFeedbacks(data);
         }
         catch(error) {
-            router.push('/unauthorized');
+            console.log(error.response?.data?.message)
         }
     } 
 

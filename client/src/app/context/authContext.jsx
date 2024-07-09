@@ -64,12 +64,12 @@ export const AuthProvider = ({ children }) => {
             
             setTimeout(() => {
                 setLoading(false);
-            }, 5000)
+            }, 3000)
         }
         catch(error) {
             setTimeout(() => {
                 router.push('/unauthorized');
-            }, 5000)
+            }, 3000)
         }
     }
 
