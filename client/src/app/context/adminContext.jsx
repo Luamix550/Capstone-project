@@ -52,7 +52,7 @@ export const AdminProvider = ({children}) => {
                 description: new Date(Date.now()).toLocaleString('en-us'),
                 position: "bottom-right",
                 action: {
-                    label: "Undo",
+                    label: "Close",
                 },
                 className: 'custom-toast'
             });

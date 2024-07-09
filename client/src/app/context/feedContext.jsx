@@ -42,8 +42,8 @@ export const FeedProvider = ({ children }) => {
                 description: new Date(Date.now()).toLocaleString('en-us'),
                 position: "bottom-right",
                 action: {
-                    label: "Undo",
-                    onClick: () => console.log("Undo"),
+                    label: "Close",
+                    onClick: () => console.log("Close"),
                 },
                 className: 'custom-toast'
             });

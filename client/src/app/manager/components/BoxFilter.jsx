@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "sonner";
 
 function BoxFilter({ feedbacks, filter }) {
   const [selectedDate, setSelectedDate] = useState("");
@@ -8,19 +9,23 @@ function BoxFilter({ feedbacks, filter }) {
   const handlerFilter = () => {
     let filteredFeedbacks = feedbacks;
 
-    if (!feedbacks || feedbacks.length === 0) throw new Error("Sin feedbacks");
+    if (!feedbacks || feedbacks.length === 0) {
+      toast.error('Feedbacks not found', {
+        description: new Date(Date.now()).toLocaleString('en-us'),
+        position: "bottom-right",
+        action: {
+            label: "Close",
+            onClick: () => console.log("Close"),
+        },
+        className: 'custom-toast'
+    });
+    }
 
     const selectDateObject = selectedDate ? new Date(selectedDate) : null;
-    const dataSelect = selectDateObject?.toLocaleDateString('en-us', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
 
     if (selectDateObject) {
       filteredFeedbacks = filteredFeedbacks.filter((feedback) => {
         const feedbackDate = new Date(feedback.createdAt);
-
         const selectedDateString = selectDateObject.toISOString().split("T")[0];
         const feedbackDateString = feedbackDate.toISOString().split("T")[0];
 
