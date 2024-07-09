@@ -16,8 +16,10 @@ const FeedBacks = () => {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center min-h-screen bg-background-1">
-                <ReactLoading type={"spinningBubbles"} color="#047857" className="w-96 h-96"/>
+            <div className='bg-load bg-cover'>  
+                <div className="flex items-center justify-center min-h-screen">
+                    <ReactLoading type={"spinningBubbles"} color="#047857" className="w-96 h-96"/>
+                </div>
             </div>
         )
     }

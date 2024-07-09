@@ -63,6 +63,7 @@ export const feedbackUser = async (req, res) => {
  */
 export const updateFeedback = async (req, res) => {
     const { id } = req.params;
+    const { sendEmail } = req.body;
 
     try {
         const feedback = await Feedback.findByIdAndUpdate(id, req.body, {
@@ -80,7 +81,7 @@ export const updateFeedback = async (req, res) => {
             hour12: true,
         });
 
-        // if (req.body.hasOwnProperty('status')) await mailByStatusFeedBack(feedback.userId, date, feedback);
+        if (sendEmail) await mailByStatusFeedBack(feedback.userId, date, feedback);
 
         res.json(feedback);
     } catch (error) {
