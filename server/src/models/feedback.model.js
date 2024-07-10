@@ -36,6 +36,11 @@ const newFeedback = new mongoose.Schema({
     category: {
         type: String,
         enum: ['Congratulations', 'Complaint', 'Suggestion'],
+    },
+    archived: {
+        type: String,
+        enum: ["", 'Archived'],
+        default: ""
     }
 }, {
     timestamps: true,

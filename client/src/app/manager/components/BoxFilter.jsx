@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
+import ReactLoading from "react-loading";
 
 function BoxFilter({ feedbacks, filter }) {
   const [selectedDate, setSelectedDate] = useState("");
@@ -43,10 +44,11 @@ function BoxFilter({ feedbacks, filter }) {
 
     if (selectedStatus !== "all") {
       filteredFeedbacks = filteredFeedbacks.filter(
-        (feedback) => feedback?.status === selectedStatus
+        (feedback) =>  selectedStatus === "Archived" ? feedback?.archived === selectedStatus : feedback?.status === selectedStatus
       );
     }
 
+    
     filter(filteredFeedbacks);
   };
 
