@@ -7,9 +7,12 @@ export const Footer = () => {
       <footer className="backdrop-blur-xl bg-white/30 flex flex-wrap p-3 justify-between gap-5 ">
         <div className="flex flex-wrap gap-2">
           <div className="grid place-content-center">
-            <button className="bg-green-100 grid place-content-center p-3 hover:bg-green-200 text-green-800 font-bold rounded text-sm">
+            <a
+              href="https://smartalentit.com/"
+              className="bg-green-100 grid place-content-center p-3 hover:bg-green-200 text-green-800 font-bold rounded text-sm"
+            >
               Visit Out Page
-            </button>
+            </a>
           </div>
 
           <div className="grid place-content-center">
@@ -56,7 +59,7 @@ export const Footer = () => {
             <h3 className="text-start font-bold">I'm a talent</h3>
             <div className="flex flex-row gap-2 hover:bg-green-100 pt-1 pb-1 pl-2 pr-2 rounded cursor-pointer">
               <div className="grid place-content-center">
-                <TbPhone className="text-green-700" />
+                <TbMail className="text-green-700" />
               </div>
               <a href="mailto:info@smartalentit.com" className="text-sm">
                 info@smartalentit.com
@@ -65,7 +68,7 @@ export const Footer = () => {
 
             <div className="flex flex-row gap-2 hover:bg-green-100 pt-1 pb-1 pl-2 pr-2 rounded cursor-pointer">
               <div className="grid place-content-center">
-                <TbMail className="text-green-700" />
+                <TbPhone className="text-green-700" />
               </div>
               <p className="text-sm">+57 322 516 4187</p>
             </div>
