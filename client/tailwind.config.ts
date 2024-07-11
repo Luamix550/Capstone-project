@@ -19,6 +19,9 @@ const config: Config = {
         'admin': "url('https://i.imgur.com/x4ddXxw.png')",
         'load': "url('https://i.imgur.com/bDRIcqr.png')"
       },
+      screen:{
+        xsm: '300px',
+      },
       fontFamily: {
         GaMaamli: ["'Ga Maamli'", "sans-serif"],
         Bebas: ["'Bebas Neue'", "sans-serif"],

@@ -3,6 +3,7 @@ import OnlyCardFeed from "./OnlyCardFeed";
 import { TbArrowsDownUp } from "react-icons/tb";
 import { useAdmin } from '../../context/adminContext';
 import { toast } from "sonner";
+
 const KanbanTable = ({ feedbacks }) => {
   const { setFeedbacks,  updateFeedback } = useAdmin();
 
@@ -88,7 +89,7 @@ const KanbanTable = ({ feedbacks }) => {
         </div>
       </div>
       <div
-        className="overflow-x-auto scrollbar-hide overflow-scroll max-h-[70vh]"
+        className="overflow-x-auto scrollbar-hide overflow-scroll max-h-[80vh]"
         onDragOver={draggingOver}
         onDrop={(e) => onDrop(e, status)}
       >

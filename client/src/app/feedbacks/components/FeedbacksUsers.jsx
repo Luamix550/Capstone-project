@@ -6,9 +6,9 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Calendar from "./Calendar";
 import { FeedbackCard } from "./FeedbackCard";
 
-const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
+const FeedbacksUsers = ({ feedbacks = [], addFeedback, allFeedbacks }) => {
   const feedbackContainerRef = useRef(null);
-  const { allFeedbacks, filteredFeedbacks, getAllFeedbacks, showInitialFeedbacks } = useFeed();
+  const { filteredFeedbacks, getAllFeedbacks, showInitialFeedbacks } = useFeed();
 
   const scrollLeft = () => {
     if (feedbackContainerRef.current) {
@@ -21,10 +21,6 @@ const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
       feedbackContainerRef.current.scrollBy({ left: 400, behavior: 'smooth' });
     }
   };
-
-  useEffect(() => {
-    getAllFeedbacks();
-  }, []);
 
   const userFeedbacks = showInitialFeedbacks ? [...allFeedbacks, ...feedbacks] : [...filteredFeedbacks];
 

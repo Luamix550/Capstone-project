@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <nav className="shadow-lg">
-      <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-6">
+      <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-2">
         <a href="https://smartranks.co/" className="flex items-center space-x-3 rtl:space-x-reverse hover:scale-95 transition duration-300">
           <img src="https://i.imgur.com/PcOLLVm.png" className="h-14" alt="SmartRank" />
         </a>
