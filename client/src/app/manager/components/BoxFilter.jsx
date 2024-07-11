@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { toast } from "sonner";
-import ReactLoading from "react-loading";
 
 function BoxFilter({ feedbacks, filter }) {
   const [selectedDate, setSelectedDate] = useState("");
@@ -48,6 +47,17 @@ function BoxFilter({ feedbacks, filter }) {
       );
     }
 
+    if (filteredFeedbacks.length === 0) {
+      toast.error('Feedbacks not found', {
+        description: new Date(Date.now()).toLocaleString('en-us'),
+        position: "bottom-right",
+        action: {
+            label: "Close",
+            onClick: () => console.log("Close"),
+        },
+        className: 'custom-toast'
+      });
+    }
     
     filter(filteredFeedbacks);
   };
@@ -70,8 +80,8 @@ function BoxFilter({ feedbacks, filter }) {
               </svg>
             </div>
             <input
-              datepicker-buttons
-              datepicker-autoselect-today
+              datepicker-buttons="true"
+              datepicker-autoselect-today="true"
               type="date"
               onChange={(e) => setSelectedDate(e.target.value)}
               className="text-gray-900 text-sm rounded-lg block w-full ps-10 p-3 bg-slate-100 placeholder-gray-100"
@@ -83,14 +93,12 @@ function BoxFilter({ feedbacks, filter }) {
         <form className="max-w-sm">
           <h5 className="text-green-700 font-bold text-2xl mb-2">Ratings</h5>
           <select
-            id="countries"
-            className="text-gray-900 text-sm rounded-lg block w-full ps-4 p-3 bg-slate-100 placeholder-gray-100 "
-            value={selectedRating}
-            onChange={(e) => setSelectedRating(e.target.value)}
+          id="countries"
+          className="text-gray-900 text-sm rounded-lg block w-full ps-4 p-3 bg-slate-100 placeholder-gray-100"
+          value={selectedRating}
+          onChange={(e) => setSelectedRating(e.target.value)}
           >
-            <option value="all" selected>
-              All
-            </option>
+            <option value="all">All</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -107,9 +115,7 @@ function BoxFilter({ feedbacks, filter }) {
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
           >
-            <option value="all" selected>
-              All
-            </option>
+            <option value="all">All</option>
             <option value="Not Started">Not Started</option>
             <option value="In Progress">In Progress</option>
             <option value="Done">Done</option>

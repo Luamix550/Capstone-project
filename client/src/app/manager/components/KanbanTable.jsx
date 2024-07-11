@@ -6,7 +6,7 @@ const OnlyCardFeed = lazy(() => import("./OnlyCardFeed"));
 
 const KanbanTable = ({ feedbacks }) => {
   const { setFeedbacks, updateFeedback } = useAdmin();
-  const [visibleFeedbacks, setVisibleFeedbacks] = useState(5);
+  const [visibleFeedbacks, setVisibleFeedbacks] = useState(6);
 
   const notStartedFeedbacks = feedbacks.filter((data) => data.status === "Not Started" && data.archived === "");
   const inProgressFeedbacks = feedbacks.filter((data) => data.status === "In Progress" && data.archived === "");
@@ -76,7 +76,7 @@ const KanbanTable = ({ feedbacks }) => {
       setFeedbacks(newFeedbacks);
     }
   };
-
+  
   const draggingOver = (e) => {
     e.preventDefault();
   };
