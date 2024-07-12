@@ -4,14 +4,18 @@ import { TbPhone, TbMail } from "react-icons/tb";
 const Footer = () => {
   return (
     <>
+<<<<<<< HEAD
       <footer className="backdrop-blur-xl bg-white/30 flex flex-wrap p-3 justify-between gap-5">
+=======
+      <footer className="backdrop-blur-xl bg-white/30 flex flex-wrap p-3 justify-between gap-5 bottom-0 left-0 w-full">
+>>>>>>> 2f601c867c94aee96f3aa570244d2eccf20a8608
         <div className="flex flex-wrap gap-2">
           <div className="grid place-content-center">
             <a
               href="https://smartalentit.com/"
               className="bg-green-100 grid place-content-center p-3 hover:bg-green-200 text-green-800 font-bold rounded text-sm"
             >
-              Visit Out Page
+              Visit Our Page
             </a>
           </div>
 

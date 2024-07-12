@@ -79,7 +79,7 @@ function AdministrationComponent() {
   return (
     <>
       <Navbar />
-      <main className="flex flex-col mt-2 p-10 max-h-max bg-admin bg-cover">
+      <main className="flex flex-col mt-2 p-10 max-h-max">
         <div className="flex mb-5">
           <div className="flex flex-row gap-3">
             <button

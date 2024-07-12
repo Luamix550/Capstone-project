@@ -14,11 +14,11 @@ function BoxFilter({ feedbacks, filter }) {
         description: new Date(Date.now()).toLocaleString('en-us'),
         position: "bottom-right",
         action: {
-            label: "Close",
-            onClick: () => console.log("Close"),
+          label: "Close",
+          onClick: () => console.log("Close"),
         },
         className: 'custom-toast'
-    });
+      });
     }
 
     const selectDateObject = selectedDate ? new Date(selectedDate) : null;
@@ -43,7 +43,7 @@ function BoxFilter({ feedbacks, filter }) {
 
     if (selectedStatus !== "all") {
       filteredFeedbacks = filteredFeedbacks.filter(
-        (feedback) =>  selectedStatus === "Archived" ? feedback?.archived === selectedStatus : feedback?.status === selectedStatus
+        (feedback) => selectedStatus === "Archived" ? feedback?.archived === selectedStatus : feedback?.status === selectedStatus
       );
     }
 
@@ -52,20 +52,20 @@ function BoxFilter({ feedbacks, filter }) {
         description: new Date(Date.now()).toLocaleString('en-us'),
         position: "bottom-right",
         action: {
-            label: "Close",
-            onClick: () => console.log("Close"),
+          label: "Close",
+          onClick: () => console.log("Close"),
         },
         className: 'custom-toast'
       });
     }
-    
+
     filter(filteredFeedbacks);
   };
 
   return (
-    <div className="p-10 flex flex-row gap-10 mt-5 justify-between rounded-md drop-shadow-md">
-      <div className="flex flex-row gap-10">
-        <div>
+    <div className="p-10 flex flex-col lg:flex-row gap-10 mt-5 justify-between rounded-md drop-shadow-md">
+      <div className="flex flex-col lg:flex-row gap-10">
+        <div className="lg:w-72">
           <h5 className="text-green-700 font-bold text-2xl mb-2">Date</h5>
           <div className="relative max-w-sm">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -90,13 +90,13 @@ function BoxFilter({ feedbacks, filter }) {
           </div>
         </div>
 
-        <form className="max-w-sm">
+        <form className="lg:max-w-sm">
           <h5 className="text-green-700 font-bold text-2xl mb-2">Ratings</h5>
           <select
-          id="countries"
-          className="text-gray-900 text-sm rounded-lg block w-full ps-4 p-3 bg-slate-100 placeholder-gray-100"
-          value={selectedRating}
-          onChange={(e) => setSelectedRating(e.target.value)}
+            id="ratings"
+            className="text-gray-900 text-sm rounded-lg block w-full ps-4 p-3 bg-slate-100 placeholder-gray-100"
+            value={selectedRating}
+            onChange={(e) => setSelectedRating(e.target.value)}
           >
             <option value="all">All</option>
             <option value="1">1</option>
@@ -107,10 +107,10 @@ function BoxFilter({ feedbacks, filter }) {
           </select>
         </form>
 
-        <form className="max-w-sm">
+        <form className="lg:max-w-sm">
           <h5 className="text-green-700 font-bold text-2xl mb-2">Status</h5>
           <select
-            id="countries"
+            id="status"
             className="text-gray-900 text-sm rounded-lg block w-full ps-4 p-3 bg-slate-100 placeholder-gray-100"
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
@@ -126,7 +126,7 @@ function BoxFilter({ feedbacks, filter }) {
 
       <button
         onClick={handlerFilter}
-        className="rounded-lg mt-9 shadow-xl bg-gradient-to-r from-green-700 to-green-500 h-12 w-32 font-semibold text-white hover:bg-green-400 hover:scale-110 transition duration-300"
+        className="rounded-lg mt-4 lg:mt-0 shadow-xl bg-gradient-to-r from-green-700 to-green-500 h-12 w-full lg:w-32 font-semibold text-white hover:bg-green-400 hover:scale-110 transition duration-300"
       >
         Apply Filters
       </button>

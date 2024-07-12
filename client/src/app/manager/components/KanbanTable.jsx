@@ -1,6 +1,7 @@
 import React, { useState, lazy, Suspense } from "react";
 import { useAdmin } from '../../context/adminContext';
 import { toast } from "sonner";
+
 import Loader from './Loader';
 const OnlyCardFeed = lazy(() => import("./OnlyCardFeed"));
 
@@ -97,7 +98,7 @@ const KanbanTable = ({ feedbacks }) => {
         </div>
       </div>
       <div
-        className="overflow-x-auto scrollbar-hide overflow-scroll max-h-[70vh]"
+        className="overflow-x-auto scrollbar-hide overflow-scroll max-h-[80vh] mt-2"
         onDragOver={draggingOver}
         onDrop={(e) => onDrop(e, status)}
         onScroll={(e) => handleScroll(e, feedbacks.length)}
@@ -121,7 +122,7 @@ const KanbanTable = ({ feedbacks }) => {
   );
 
   return (
-    <div className="grid grid-cols-4 gap-5 mt-5">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5">
       {renderColumn("Not Started", "bg-gradient-to-r from-red-400 to-red-600", notStartedFeedbacks, "Not Started")}
       {renderColumn("In Progress", "bg-gradient-to-r from-yellow-400 to-yellow-600", inProgressFeedbacks, "In Progress")}
       {renderColumn("Done", "bg-gradient-to-r from-green-400 to-green-600", doneFeedbacks, "Done")}
