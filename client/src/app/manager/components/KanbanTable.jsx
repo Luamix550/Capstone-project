@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { useAdmin } from '../../context/adminContext';
 import { toast } from "sonner";
 import Loader from './Loader';

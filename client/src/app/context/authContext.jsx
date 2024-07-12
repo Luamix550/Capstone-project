@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const logOut = () => {
-        logOutRequest()
+        logOutRequest();
         router.push("/started");
     }
 

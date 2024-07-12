@@ -1,10 +1,10 @@
 import React from "react";
 import { TbPhone, TbMail } from "react-icons/tb";
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <>
-      <footer className="backdrop-blur-xl bg-white/30 flex flex-wrap p-3 justify-between gap-5 ">
+      <footer className="backdrop-blur-xl bg-white/30 flex flex-wrap p-3 justify-between gap-5">
         <div className="flex flex-wrap gap-2">
           <div className="grid place-content-center">
             <a
@@ -78,3 +78,5 @@ export const Footer = () => {
     </>
   );
 };
+
+export default Footer;

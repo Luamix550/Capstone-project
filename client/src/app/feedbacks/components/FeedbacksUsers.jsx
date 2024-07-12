@@ -1,13 +1,15 @@
 "use client"
 import { useFeed } from '../../context/feedContext';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect, lazy, Suspense, useState, memo } from 'react';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Calendar from "./Calendar";
-import { FeedbackCard } from "./FeedbackCard";
+import LoadingCard from "./LoadingCard";
+const FeedbackCard = lazy(() => import("./FeedbackCard"));
 
 const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
   const feedbackContainerRef = useRef(null);
+  const [cardVisibility, setCardVisibility] = useState(4);
   const { allFeedbacks, filteredFeedbacks, getAllFeedbacks, showInitialFeedbacks } = useFeed();
 
   const scrollLeft = () => {
@@ -17,14 +19,18 @@ const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
   };
 
   const scrollRight = () => {
-    if (feedbackContainerRef.current) {
-      feedbackContainerRef.current.scrollBy({ left: 400, behavior: 'smooth' });
-    }
+    setCardVisibility(prev => prev + 1);
   };
 
   useEffect(() => {
     getAllFeedbacks();
   }, []);
+
+  useEffect(() => {
+    if (feedbackContainerRef.current) {
+      feedbackContainerRef.current.scrollBy({ left: 400, behavior: 'smooth' });
+    }
+  }, [cardVisibility]);
 
   const userFeedbacks = showInitialFeedbacks ? [...allFeedbacks, ...feedbacks] : [...filteredFeedbacks];
 
@@ -50,8 +56,10 @@ const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
               ref={feedbackContainerRef}
               style={{ scrollSnapType: 'x mandatory' }}
             >
-              {userFeedbacks.map((feedback, index) => (
-                <FeedbackCard key={index} feedback={feedback} />
+              {userFeedbacks.slice(0, cardVisibility).map((feedback) => (
+                <Suspense key={feedback._id} fallback={<LoadingCard />}>
+                  <FeedbackCard feedback={feedback} />
+                </Suspense>
               ))}
             </div>
               <button

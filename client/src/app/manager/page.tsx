@@ -13,9 +13,9 @@ const Manager = () => {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center min-h-screen bg-load ">
-               {/* <ReactLoading type={"spinningBubbles"} color="#047857" className="w-96 h-96"/> */}
-               <img className="animate-bounce animate-infinite animate-ease-linear animate-fill-both" src="https://smartalentit.com/wp-content/uploads/2024/06/Logo-01-1.png" alt="logo" />
+            <div className="flex flex-col items-center justify-center min-h-screen bg-load">
+               <img className="animate-pulse animate-infinite mb-5" src="https://smartalentit.com/wp-content/uploads/2024/06/Logo-01-1.png" alt="logo" />
+               <ReactLoading type={"spokes"} color="#fff" className="w-40 h-40"/>
             </div>
         )
     }

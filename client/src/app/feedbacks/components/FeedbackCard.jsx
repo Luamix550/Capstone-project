@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import HalfRating from './HalfRating';
 
-export const FeedbackCard = ({ feedback }) => (
+const FeedbackCard = ({ feedback }) => (
     <div
       className={`rounded-xl p-6 border sm:shadow-inner border-black bg-white min-w-[100%] sm:min-w-[400px] md:min-w-[640px] lg:min-w-[300px] max-w-[100%] sm:max-w-[400px] md:max-w-[640px] lg:max-w-[800px] h-auto overflow-auto hover:scale-95 transition duration-300`}
       role="button"
@@ -41,3 +41,5 @@ export const FeedbackCard = ({ feedback }) => (
       </div>
     </div>
   );
+
+export default memo(FeedbackCard);

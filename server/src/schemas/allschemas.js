@@ -7,13 +7,14 @@ export const userRegisterSchema = z.object({
     })
     .regex(/^[a-zA-Z\s]+$/, {
         message: 'The name can only contain letters.'
-    }),
+    })
+    .trim(),
     lastname: z.string({
         required_error: 'Lastname is required'
     })
     .regex(/^[a-zA-Z\s]+$/, {
         message: 'The last name can only contain letters.'
-    }),
+    }).trim(),
     email: z.string({
         required_error: 'Email is required'
     })

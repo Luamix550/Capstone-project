@@ -1,4 +1,4 @@
-import { FeedbackCard } from "@/app/feedbacks/components/FeedbackCard";
+import FeedbackCard  from "@/app/feedbacks/components/FeedbackCard";
 import HalfRating from "../../feedbacks/components/HalfRating";
 import DateToPretty from "@/handlers/dateToPretty";
 import React, { useState, memo  } from "react";

@@ -3,13 +3,9 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../context/authContext';
 
-const Navbar = () => {
+const Navbar = ({user}) => {
   const router = useRouter();
-  const { user, profile, loading, logOut } = useAuth();
-
-  useEffect(() => {
-    profile();
-  }, []);
+  const { logOut } = useAuth();
 
   return (
     <nav className="shadow-lg">
