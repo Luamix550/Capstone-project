@@ -18,7 +18,7 @@ function UserList({ users, inputValue }) {
   return (
     <>
       <h3 className="font-semibold text-2xl mt-7 mb-5">Users</h3>
-      <div className="h-screen flex flex-col gap-6">
+      <div className="flex flex-col gap-6">
         {users &&
           users.map((user) => (
             <div key={user._id}>
