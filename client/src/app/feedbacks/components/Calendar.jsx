@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useFeed } from '../../context/feedContext';
-
 const Calendar = () => {
     const [open, setOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState(new Date());

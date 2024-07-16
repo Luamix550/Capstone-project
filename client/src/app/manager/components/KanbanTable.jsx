@@ -1,14 +1,12 @@
 import React, { useState, lazy, Suspense } from "react";
 import { useAdmin } from '../../context/adminContext';
 import { toast } from "sonner";
-
 import Loader from './Loader';
 const OnlyCardFeed = lazy(() => import("./OnlyCardFeed"));
-
 const KanbanTable = ({ feedbacks }) => {
   const { setFeedbacks, updateFeedback } = useAdmin();
-  const [visibleFeedbacks, setVisibleFeedbacks] = useState(6);
-
+  const [visibleFeedbacks, setVisibleFeedbacks] = useState(7);
+  
   const notStartedFeedbacks = feedbacks.filter((data) => data.status === "Not Started" && data.archived === "");
   const inProgressFeedbacks = feedbacks.filter((data) => data.status === "In Progress" && data.archived === "");
   const doneFeedbacks = feedbacks.filter((data) => data.status === "Done" && data.archived === "");
@@ -17,7 +15,6 @@ const KanbanTable = ({ feedbacks }) => {
   const startDrag = (e, feedback) => {
     e.dataTransfer.setData('FeedbackId', feedback._id);
   };
-
   const notificationEmail = () => {
     return new Promise((resolve) => {
       toast(
@@ -48,47 +45,40 @@ const KanbanTable = ({ feedbacks }) => {
         </div>,
         {
           position: "top-center",
-          className: "bg-white text-black p-4 rounded-md hover:border-gray-300 border-solid duration-300 border-1 shadow-2xl",
+          className: "bg-white text-black p-4 rounded-md hover:border-gray-300 border-solid duration-300 border-1 shadow-2xl justify-center",
         }
       );
     });
   };
-
   const onDrop = async (e, status) => {
     const feedbackId = e.dataTransfer.getData('FeedbackId');
     const feedback = feedbacks.find(feedback => feedback._id === feedbackId);
     if (feedback) {
       status !== "Archived" ? (feedback.status = status, feedback.archived = "") : feedback.archived = status;
-
       const newFeedbacks = feedbacks.map(feed => {
         if (feed._id === feedbackId) return feedback;
         return feed;
       });
-
       let boolEmail = status === 'Archived' ?  false : notificationEmail();
-
       updateFeedback({
         _id: feedback._id,
         status: feedback.status,
         sendEmail: boolEmail,
         archived: status === "Archived" ? status : ""
       });
-
       setFeedbacks(newFeedbacks);
     }
   };
-  
+ 
   const draggingOver = (e) => {
     e.preventDefault();
   };
-
   const handleScroll = (e, feedbacksLength) => {
     const bottom = e.target.scrollHeight - Math.ceil(e.target.scrollTop) <= e.target.clientHeight + 1;
     if (bottom && visibleFeedbacks < feedbacksLength) {
       setVisibleFeedbacks(prev => prev + 5);
     }
   };
-
   const renderColumn = (title, bgColor, feedbacks, status) => (
     <div className="flex flex-col">
       <div className={`p-5 flex flex-row justify-between font-bold text-white ${bgColor} rounded-md sm:w-42`}>
@@ -112,15 +102,14 @@ const KanbanTable = ({ feedbacks }) => {
         ))}
         {feedbacks.length === 0 && (
           <div className="flex justify-center items-center h-96">
-            <div className="border rounded-lg border-gray-400 p-2">
-              <p className="text-gray-500">No feedbacks</p>
+            <div className="border rounded-lg border-gray-400 p-2 bg-white">
+              <p className="text-black ">No feedbacks</p>
             </div>
           </div>
         )}
       </div>
     </div>
   );
-
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5">
       {renderColumn("Not Started", "bg-gradient-to-r from-red-400 to-red-600", notStartedFeedbacks, "Not Started")}
@@ -130,5 +119,4 @@ const KanbanTable = ({ feedbacks }) => {
     </div>
   );
 };
-
 export default KanbanTable;

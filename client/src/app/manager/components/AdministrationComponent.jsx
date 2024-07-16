@@ -18,7 +18,6 @@ function AdministrationComponent() {
   const [isOpenFilter, setIsOpenFilter] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchUser, setSearchUser] = useState("");
-  const [inputValue, setInputValue] = useState("");
   const [openSearch, setOpenSearch] = useState(false);
 
   useEffect(() => {
@@ -27,14 +26,15 @@ function AdministrationComponent() {
   }, []);
 
 
-  const handleSubmit = (e) => {
+  const handleSubmitFeedbacks = (e) => {
     e.preventDefault();
-    setSearchTerm(inputValue)
+    setSearchTerm(e.target.value);
   }
 
   const handleSubmitUsers = (e) => {
     e.preventDefault();
-    setSearchUser(inputValue)
+    if (e.target.value.length === 0) setUsers(originalUsers);
+    setSearchUser(e.target.value);
   }
 
   const handleOptionView = (text) => {
@@ -51,7 +51,7 @@ function AdministrationComponent() {
   };
 
   useEffect(() => {
-    if (searchTerm.startsWith("email:")) {
+    if (searchTerm.startsWith("email: ")) {
       const userEmail = searchTerm.split("email:")[1].trim();
 
       const [userEmailFound] = users.filter((user) => user.email === userEmail);
@@ -62,7 +62,7 @@ function AdministrationComponent() {
       
       setFeedbacks(filteredFeedbacks);
       
-    } else if (searchTerm.startsWith("feedback:")) {
+    } else if (searchTerm.startsWith("feedback: ")) {
       const feedbackCategory = searchTerm.split("feedback:")[1].trim();
       
       const filteredFeedbacks = originalFeedbacks.filter(
@@ -130,7 +130,7 @@ function AdministrationComponent() {
         <div className="flex flex-row gap-3 justify-end">
           {openSearch && optionView == 'kanban' ? (
             <>
-              <form className="flex-1" onSubmit={handleSubmit}>
+              <form className="flex-1">
                 <label
                   htmlFor="default-search"
                   className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -140,7 +140,7 @@ function AdministrationComponent() {
                 <div className="relative">
                   <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                     <svg
-                      className="w-2 h4 text-gray-500 text-gray-400"
+                      className="w-2 h4 text-gray-500"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -158,14 +158,11 @@ function AdministrationComponent() {
                   <input
                     type="search"
                     id="default-search"
-                    className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg  placeholder-gray-500 text-gray-900"
+                    className="block w-full p-4 ps-10 text-sm border border-gray-300 rounded-lg  placeholder-gray-500 text-gray-900"
                     placeholder="Search Feedbacks and Users"
                     required
-                    value={inputValue}
-                    onChange={({ target }) => {
-                      if (target.value.length === 0) setFeedbacks(originalFeedbacks);
-                      setInputValue(target.value)
-                    }}
+                    value={searchTerm}
+                    onChange={handleSubmitFeedbacks}
                   />
                 </div>
               </form>
@@ -173,7 +170,7 @@ function AdministrationComponent() {
           ):
           openSearch && optionView == 'users' && (
             <>
-              <form className="flex-1" onSubmit={handleSubmitUsers}>
+              <form className="flex-1">
                 <label
                   htmlFor="default-search"
                   className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -201,14 +198,10 @@ function AdministrationComponent() {
                   <input
                     type="search"
                     id="default-search"
-                    className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg  placeholder-gray-500 text-gray-900"
+                    className="block w-full p-4 ps-10 text-sm border border-gray-300 rounded-lg  placeholder-gray-500 text-gray-900"
                     placeholder="Search User"
-                    required
-                    value={inputValue}
-                    onChange={({ target }) => {
-                      if (target.value.length === 0) setUsers(originalUsers);
-                      setInputValue(target.value)
-                    }}
+                    value={searchUser}
+                    onChange={handleSubmitUsers}
                   />
                 </div>
               </form>

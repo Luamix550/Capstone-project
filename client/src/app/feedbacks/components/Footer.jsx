@@ -4,11 +4,7 @@ import { TbPhone, TbMail } from "react-icons/tb";
 const Footer = () => {
   return (
     <>
-<<<<<<< HEAD
-      <footer className="backdrop-blur-xl bg-white/30 flex flex-wrap p-3 justify-between gap-5">
-=======
       <footer className="backdrop-blur-xl bg-white/30 flex flex-wrap p-3 justify-between gap-5 bottom-0 left-0 w-full">
->>>>>>> 2f601c867c94aee96f3aa570244d2eccf20a8608
         <div className="flex flex-wrap gap-2">
           <div className="grid place-content-center">
             <a
@@ -32,7 +28,7 @@ const Footer = () => {
 
         <div className="flex flex-row gap-1">
           <div className="flex flex-col gap-1">
-            <h3 className="text-start font-bold">I'm a talent</h3>
+          <h3 className="text-start font-bold">I&apos;m a talent</h3>
             <div className="flex flex-row gap-2 hover:bg-green-100 pt-1 pb-1 pl-2 pr-2 rounded cursor-pointer">
               <div className="grid place-content-center">
                 <TbPhone className="text-green-700" />
@@ -60,7 +56,7 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-col gap-1">
-            <h3 className="text-start font-bold">I'm a talent</h3>
+            <h3 className="text-start font-bold">I&apos;m a talent</h3>
             <div className="flex flex-row gap-2 hover:bg-green-100 pt-1 pb-1 pl-2 pr-2 rounded cursor-pointer">
               <div className="grid place-content-center">
                 <TbMail className="text-green-700" />

@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useContext } from "react";
 import { filterFeedbacks, getFeedbacks, newFeedback } from '../api/userFeedback';
 import { toast } from "sonner";
 
@@ -60,6 +60,7 @@ export const FeedProvider = ({ children }) => {
             filteredFeedbacks,
             showInitialFeedbacks,
             setShowInitialFeedbacks,
+            setAllFeedbacks
         }}>
             { children }
         </FeedContext.Provider>

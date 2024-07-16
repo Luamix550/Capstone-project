@@ -8,12 +8,10 @@ function UserList({ users, inputValue }) {
 
   useEffect(() => {
     if (inputValue) {
-      const userEmail = inputValue.toLowerCase();
-      const filteredUsers = originalUsers.filter(user => user.email.toLowerCase() === userEmail);
-      
-      setUsers(filteredUsers);
+      const userEmail = originalUsers.filter(user => user.email.includes(inputValue))
+      setUsers(userEmail);
     }
-  }, [inputValue, originalUsers, setUsers]);
+  }, [inputValue])
 
   return (
     <>

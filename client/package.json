@@ -27,6 +27,7 @@
     "autoprefixer": "^10.4.19",
     "axios": "^1.7.2",
     "date-fns": "^3.6.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc-df5f2736-20240712",
     "flowbite": "^2.3.0",
     "framer-motion": "^11.2.11",
     "i18next": "^23.11.5",

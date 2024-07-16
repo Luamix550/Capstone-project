@@ -14,9 +14,9 @@ function CardUser({ user }) {
             alt="Your avatar"
           />
         </div>
-        <div className="ml-3">
+        <div className="ml-3 inline-block min-w-0">
           <p className="font-semibold text-xl text-gray-800">{`${user.name} ${user.lastname}`}</p>
-          <h5 className="font-bold text-gray-500">{user.email}</h5>
+          <h5 className="font-bold text-gray-500 truncate block ">{user.email}</h5>
         </div>
       </div>
 
@@ -24,7 +24,7 @@ function CardUser({ user }) {
         <div>
           <select
             id="countries"
-            className="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg block w-full p-2.5 border-gray-600 hover:border"
+            className="bg-gray-50 border text-gray-800 text-sm rounded-lg block w-full p-2.5 border-gray-600 hover:border"
             defaultValue={user.rol}
             onChange={({ target }) =>
               updateUserRol({ ...user, newRol: target.value })

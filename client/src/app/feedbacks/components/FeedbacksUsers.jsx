@@ -1,6 +1,6 @@
 "use client"
 import { useFeed } from '../../context/feedContext';
-import React, { useRef, useEffect, lazy, Suspense, useState, memo } from 'react';
+import React, { useRef, useEffect, lazy, Suspense, useState } from 'react';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Calendar from "./Calendar";
