@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/components/RegisterForm.jsx", "src/app/manager/components/AdministrationComponent.jsx", "tailwind.config.ts", "src/app/manager/components/KanbanTable.jsx", "src/app/manager/components/OnlyCardFeed.jsx", "src/app/manager/components/BoxFilter.jsx", "src/app/manager/components/CardUser.jsx", "src/app/manager/components/UserList.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/components/RegisterForm.jsx", "src/app/manager/components/AdministrationComponent.jsx", "tailwind.config.ts", "src/app/manager/components/KanbanTable.jsx", "src/app/manager/components/OnlyCardFeed.jsx", "src/app/manager/components/BoxFilter.jsx", "src/app/manager/components/CardUser.jsx", "src/app/manager/components/UserList.jsx", "src/app/pages/feedbacks/[feedbackId]src/app/feedbacks/[feedbackId].jsx
   "exclude": ["node_modules"]
 }

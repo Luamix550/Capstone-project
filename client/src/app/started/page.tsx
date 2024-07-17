@@ -1,6 +1,6 @@
 import React from "react";
 import Homepage from "./components/Homepage";
-import { AuthProvider } from '../context/authContext';
+import { AuthProvider } from "@/app/context/authContext";
 
 const GetStarted = () => {
   return (

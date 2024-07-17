@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useFeed } from '../../context/feedContext';
 import React, { useRef, useEffect, lazy, Suspense, useState } from 'react';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
@@ -7,32 +7,47 @@ import Calendar from "./Calendar";
 import LoadingCard from "./LoadingCard";
 const FeedbackCard = lazy(() => import("./FeedbackCard"));
 
+/**
+ * FeedbacksUsers component displays a list of feedback cards with horizontal scrolling.
+ * 
+ * @param {Array} feedbacks - Initial feedbacks to display.
+ * @param {Function} addFeedback - Function to add new feedback.
+ */
 const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
   const feedbackContainerRef = useRef(null);
-  const [cardVisibility, setCardVisibility] = useState(4);
+  const [visibleFeedbackCount, setVisibleFeedbackCount] = useState(4);
   const { allFeedbacks, filteredFeedbacks, getAllFeedbacks, showInitialFeedbacks } = useFeed();
 
+  /**
+   * Scrolls the feedback container to the left.
+   */
   const scrollLeft = () => {
     if (feedbackContainerRef.current) {
       feedbackContainerRef.current.scrollBy({ left: -400, behavior: 'smooth' });
     }
   };
 
+  /**
+   * Increases the number of visible feedback cards.
+   */
   const scrollRight = () => {
-    setCardVisibility(prev => prev + 1);
+    setVisibleFeedbackCount(prev => prev + 1);
   };
 
+  // Fetch all feedbacks when the component mounts
   useEffect(() => {
     getAllFeedbacks();
   }, []);
 
+  // Scroll the feedback container when the visible feedback count changes
   useEffect(() => {
     if (feedbackContainerRef.current) {
       feedbackContainerRef.current.scrollBy({ left: 400, behavior: 'smooth' });
     }
-  }, [cardVisibility]);
+  }, [visibleFeedbackCount]);
 
-  const userFeedbacks = showInitialFeedbacks ? [...allFeedbacks, ...feedbacks] : [...filteredFeedbacks];
+  // Determine which feedbacks to display based on whether initial feedbacks are shown
+  const userFeedbacks = showInitialFeedbacks ? [...allFeedbacks, ...feedbacks] : filteredFeedbacks;
 
   return (
     <section className="mt-12 md:mt-20 relative">
@@ -46,32 +61,32 @@ const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
           <div className="relative mt-12 flex items-center snap-x snap-start overflow-x-hidden">
             {userFeedbacks.length > 3 && (
               <button
-              className="absolute left-0 z-10 p-2 snap-proximity bg-white rounded-full shadow-md hover:bg-gray-200 transition duration-300"
-              aria-label="Scroll Left"
-              onClick={scrollLeft}
-            >
-              <ArrowBackIosIcon />
-            </button>
+                className="absolute left-0 z-10 p-2 snap-proximity bg-white rounded-full shadow-md hover:bg-gray-200 transition duration-300"
+                aria-label="Scroll Left"
+                onClick={scrollLeft}
+              >
+                <ArrowBackIosIcon />
+              </button>
             )}
             <div
               className="flex overflow-x-hidden overflow-y-hidden space-x-8 mx-12 no-scrollbar snap-x snap-proximity"
               ref={feedbackContainerRef}
               style={{ scrollSnapType: 'x mandatory' }}
             >
-              {userFeedbacks.slice(0, cardVisibility).map((feedback) => (
+              {userFeedbacks.slice(0, visibleFeedbackCount).map((feedback) => (
                 <Suspense key={feedback._id} fallback={<LoadingCard />}>
                   <FeedbackCard feedback={feedback} />
                 </Suspense>
               ))}
             </div>
             {userFeedbacks.length > 3 && (
-               <button
-               className="absolute right-0 z-10 p-2 bg-white rounded-full shadow-md hover:bg-gray-200 transition duration-300"
-               aria-label="Scroll Right"
-               onClick={scrollRight}
-             >
-               <ArrowForwardIosIcon />
-             </button>
+              <button
+                className="absolute right-0 z-10 p-2 bg-white rounded-full shadow-md hover:bg-gray-200 transition duration-300"
+                aria-label="Scroll Right"
+                onClick={scrollRight}
+              >
+                <ArrowForwardIosIcon />
+              </button>
             )}
           </div>
         )}
