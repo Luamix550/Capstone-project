@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { useFeed } from '../../context/feedContext';
 import FeedbacksUsers from './FeedbacksUsers';
 import ModalCategory from './ModalCategory';
-import Image from 'next/image';
 
 const HeroSectionFeedbacks = () => {
   const [modalOpen, setModalOpen] = useState(false);

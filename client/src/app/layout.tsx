@@ -5,6 +5,7 @@ import { AuthProvider } from "./context/authContext";
 import { AdminProvider } from "./context/adminContext";
 import { FeedProvider } from "./context/feedContext";
 import "./globals.css";
+<link rel="icon" href="/favicon.ico" sizes="any" />
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
