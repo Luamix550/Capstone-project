@@ -69,7 +69,9 @@ const KanbanTable = ({ feedbacks }) => {
         if (feed._id === feedbackId) return feedback;
         return feed;
       });
-      let boolEmail = status === 'Archived' ? false : notificationEmail();
+
+      let boolEmail = status === 'Archived' ?  false : await notificationEmail();
+      
       updateFeedback({
         _id: feedback._id,
         status: feedback.status,

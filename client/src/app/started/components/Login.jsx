@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { FaSpinner } from "react-icons/fa";
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '../../context/authContext';
+import { useAuth } from '@/app/context/authContext';
 
 const Login = () => {
   const router = useRouter();

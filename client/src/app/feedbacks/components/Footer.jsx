@@ -1,6 +1,9 @@
 import React from "react";
 import { TbPhone, TbMail } from "react-icons/tb";
 
+/**
+ * Footer component that provides contact information and links to the company's webpage and job openings.
+ */
 const Footer = () => {
   return (
     <>
@@ -28,7 +31,7 @@ const Footer = () => {
 
         <div className="flex flex-row gap-1">
           <div className="flex flex-col gap-1">
-          <h3 className="text-start font-bold">I&apos;m a talent</h3>
+            <h3 className="text-start font-bold">I&apos;m a talent</h3>
             <div className="flex flex-row gap-2 hover:bg-green-100 pt-1 pb-1 pl-2 pr-2 rounded cursor-pointer">
               <div className="grid place-content-center">
                 <TbPhone className="text-green-700" />

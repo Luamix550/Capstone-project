@@ -1,24 +1,28 @@
-"use client"
+"use client";
 import { useContext, createContext, useState } from "react";
 import { getAllFeedbacks, getAllUsers, updateFeed, updateRol } from "../api/admin";
 import { toast } from "sonner";
 import { useRouter } from 'next/navigation';
 
+// Creating the admin context
 export const AdminContext = createContext();
 
+// Custom hook to use the admin context
 export const useAdmin = () => {
     const context = useContext(AdminContext);
-    if (!context) throw new Error('useAuth must be used within an AuthProvider');
+    if (!context) throw new Error('useAdmin must be used within AdminProvider');
     return context;
 }
 
+// Admin context provider
 export const AdminProvider = ({children}) => {
     const router = useRouter();
-    const [feedbacks, setFeedbacks] = useState([]);
-    const [originalFeedbacks, setOriginalFeedbacks] = useState([]);
-    const [originalUsers, setOriginalUsers] = useState([]);
-    const [users, setUsers] = useState([]);
+    const [feedbacks, setFeedbacks] = useState([]); // State to store feedbacks
+    const [originalFeedbacks, setOriginalFeedbacks] = useState([]); // State to store original feedbacks
+    const [originalUsers, setOriginalUsers] = useState([]); // State to store original users
+    const [users, setUsers] = useState([]); // State to store users
 
+    // Function to fetch all feedbacks
     const getFeedbacks = async () => {
         try {
             const res = await getAllFeedbacks();
@@ -31,6 +35,7 @@ export const AdminProvider = ({children}) => {
         }
     } 
 
+    // Function to fetch all users
     const getUsers = async () => {
         try {
             const res = await getAllUsers();
@@ -43,6 +48,7 @@ export const AdminProvider = ({children}) => {
         }
     }
 
+    // Function to update user role
     const updateUserRol = async (data) => {
         const { _id }  = data;
         const { newRol } = data;
@@ -62,6 +68,7 @@ export const AdminProvider = ({children}) => {
         }
     }
 
+    // Function to update a feedback
     const updateFeedback = async (data) => {
         try {
             const res = await updateFeed(data);
@@ -71,6 +78,7 @@ export const AdminProvider = ({children}) => {
         }
     }
 
+    // Returns the context provider with necessary values and functions
     return (
         <AdminContext.Provider value={{
             feedbacks,
