@@ -1,76 +1,73 @@
 import React, { useEffect, useState } from "react";
-import Navbar from './NavbarAdmin'
+import Navbar from './NavbarAdmin';
 import KanbanTable from "./KanbanTable";
 import UserList from "./UserList";
-import {
-  TbChalkboard,
-  TbFilter,
-  TbPlaystationX,
-  TbSearch,
-  TbUserCog,
-} from "react-icons/tb";
+import { TbChalkboard, TbFilter, TbPlaystationX, TbSearch, TbUserCog } from "react-icons/tb";
 import BoxFilter from "./BoxFilter";
 import { useAdmin } from '../../context/adminContext';
 
 function AdministrationComponent() {
-  const { feedbacks, getFeedbacks, setFeedbacks, users, setUsers, getUsers, originalFeedbacks, originalUsers} = useAdmin();
+  // Utiliza el contexto de administración
+  const { feedbacks, getFeedbacks, setFeedbacks, users, setUsers, getUsers, originalFeedbacks, originalUsers } = useAdmin();
+  
+  // Estados locales para manejar la vista y las funcionalidades de búsqueda y filtrado
   const [optionView, setOptionView] = useState("kanban");
   const [isOpenFilter, setIsOpenFilter] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchUser, setSearchUser] = useState("");
   const [openSearch, setOpenSearch] = useState(false);
 
+  // Efecto para obtener feedbacks y usuarios al montar el componente
   useEffect(() => {
     getFeedbacks();
     getUsers();
   }, []);
 
-
+  // Maneja la entrada de búsqueda de feedbacks
   const handleSubmitFeedbacks = (e) => {
     e.preventDefault();
     setSearchTerm(e.target.value);
-  }
+  };
 
+  // Maneja la entrada de búsqueda de usuarios
   const handleSubmitUsers = (e) => {
     e.preventDefault();
     if (e.target.value.length === 0) setUsers(originalUsers);
     setSearchUser(e.target.value);
-  }
+  };
 
+  // Cambia la vista entre Kanban y lista de usuarios
   const handleOptionView = (text) => {
-    if (text == "users") setIsOpenFilter(false);
+    if (text === "users") setIsOpenFilter(false);
     setOptionView(text);
   };
 
+  // Filtra feedbacks basados en el filtro aplicado
   const handleFilterFeedbacks = (filteredFeedbacks) => {
     setFeedbacks(filteredFeedbacks);
   };
 
+  // Alterna el estado del filtro
   const handleOpenFilter = () => {
     setIsOpenFilter(!isOpenFilter);
   };
 
+  // Efecto para buscar feedbacks por email o categoría
   useEffect(() => {
     if (searchTerm.startsWith("email: ")) {
       const userEmail = searchTerm.split("email:")[1].trim();
-
       const [userEmailFound] = users.filter((user) => user.email === userEmail);
 
-      if (userEmailFound === undefined) return setFeedbacks([])
+      if (!userEmailFound) return setFeedbacks([]);
 
       const filteredFeedbacks = originalFeedbacks.filter((feedback) => feedback.userId === userEmailFound._id);
-      
       setFeedbacks(filteredFeedbacks);
-      
+
     } else if (searchTerm.startsWith("feedback: ")) {
       const feedbackCategory = searchTerm.split("feedback:")[1].trim();
-      
-      const filteredFeedbacks = originalFeedbacks.filter(
-        (feedback) => feedback.category === feedbackCategory
-      );
-
+      const filteredFeedbacks = originalFeedbacks.filter((feedback) => feedback.category === feedbackCategory);
       setFeedbacks(filteredFeedbacks);
-
+      
     } else {
       setFeedbacks(originalFeedbacks);
     }
@@ -83,7 +80,7 @@ function AdministrationComponent() {
         <div className="flex mb-5">
           <div className="flex flex-row gap-3">
             <button
-              className="flex gap-4 rounded-lg shadow-xl bg-gradient-to-r from-green-700 to-green-500  px-8 py-4 text-base font-semibold text-white hover:bg-green-400 hover:scale-110 transition duration-300"
+              className="flex gap-4 rounded-lg shadow-xl bg-gradient-to-r from-green-700 to-green-500 px-8 py-4 text-base font-semibold text-white hover:bg-green-400 hover:scale-110 transition duration-300"
               type="button"
               onClick={() => handleOptionView("kanban")}
             >
@@ -92,7 +89,7 @@ function AdministrationComponent() {
             </button>
 
             <button
-              className="flex gap-4 rounded-lg  shadow-xl bg-gradient-to-r from-green-700 to-green-500  px-8 py-4 text-base font-semibold text-white hover:bg-green-400 hover:scale-110 transition duration-300"
+              className="flex gap-4 rounded-lg shadow-xl bg-gradient-to-r from-green-700 to-green-500 px-8 py-4 text-base font-semibold text-white hover:bg-green-400 hover:scale-110 transition duration-300"
               type="button"
               onClick={() => handleOptionView("users")}
             >
@@ -102,7 +99,7 @@ function AdministrationComponent() {
           </div>
         </div>
 
-        {openSearch && optionView == 'kanban' ? (
+        {openSearch && optionView === 'kanban' ? (
           <div className="flex flex-row gap-10">
             <p className="mb-3 mt-3 font-normal text-gray-700 text-sm">
               <span className="p-1 text-gray-500 font-mono bg-gray-200 rounded-md">
@@ -117,7 +114,7 @@ function AdministrationComponent() {
               to search for feedbacks by your unique Id
             </p>
           </div>
-        ) : openSearch && optionView == 'users' && (
+        ) : openSearch && optionView === 'users' && (
           <div className="flex flex-row gap-10">
             <p className="mb-3 mt-3 font-normal text-gray-700 text-sm">
               <span className="p-1 text-gray-500 font-mono bg-gray-200 rounded-md">
@@ -128,7 +125,7 @@ function AdministrationComponent() {
           </div>
         )}
         <div className="flex flex-row gap-3 justify-end">
-          {openSearch && optionView == 'kanban' ? (
+          {openSearch && optionView === 'kanban' ? (
             <>
               <form className="flex-1">
                 <label
@@ -158,7 +155,7 @@ function AdministrationComponent() {
                   <input
                     type="search"
                     id="default-search"
-                    className="block w-full p-4 ps-10 text-sm border border-gray-300 rounded-lg  placeholder-gray-500 text-gray-900"
+                    className="block w-full p-4 ps-10 text-sm border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900"
                     placeholder="Search Feedbacks and Users"
                     required
                     value={searchTerm}
@@ -167,8 +164,7 @@ function AdministrationComponent() {
                 </div>
               </form>
             </>
-          ):
-          openSearch && optionView == 'users' && (
+          ) : openSearch && optionView === 'users' && (
             <>
               <form className="flex-1">
                 <label
@@ -198,7 +194,7 @@ function AdministrationComponent() {
                   <input
                     type="search"
                     id="default-search"
-                    className="block w-full p-4 ps-10 text-sm border border-gray-300 rounded-lg  placeholder-gray-500 text-gray-900"
+                    className="block w-full p-4 ps-10 text-sm border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900"
                     placeholder="Search User"
                     value={searchUser}
                     onChange={handleSubmitUsers}
@@ -224,7 +220,7 @@ function AdministrationComponent() {
               <TbSearch size={20} />
             </div>
           )}
-          {optionView == "kanban" && (
+          {optionView === "kanban" && (
             <div
               className="grid place-content-center pt-1 pb-1 pl-4 pr-4 bg-slate-100 hover:bg-slate-200 border-5 border-black cursor-pointer rounded-md"
               onClick={handleOpenFilter}
@@ -234,18 +230,18 @@ function AdministrationComponent() {
           )}
         </div>
 
-        {isOpenFilter && optionView == "kanban" && (
+        {isOpenFilter && optionView === "kanban" && (
           <BoxFilter
             feedbacks={originalFeedbacks}
             filter={handleFilterFeedbacks}
           />
         )}
 
-        {optionView == "kanban" && (
+        {optionView === "kanban" && (
           <KanbanTable feedbacks={feedbacks} />
         )}
 
-        {optionView == "users" && (
+        {optionView === "users" && (
           <UserList users={users} inputValue={searchUser} />
         )}
       </main>

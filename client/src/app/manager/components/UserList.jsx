@@ -2,16 +2,26 @@ import React, { useEffect } from "react";
 import CardUser from "./CardUser";
 import { useAdmin } from "@/app/context/adminContext";
 
+/**
+ * UserList component to display a list of users.
+ * Filters users based on the input value and displays the filtered results.
+ *
+ * @param {Object} props - The props object.
+ * @param {Array} props.users - The list of users to display.
+ * @param {string} props.inputValue - The input value to filter users by email.
+ */
 function UserList({ users, inputValue }) {
   const { originalUsers, setUsers } = useAdmin();
-  
 
+  // Filter users based on the input value
   useEffect(() => {
     if (inputValue) {
-      const userEmail = originalUsers.filter(user => user.email.includes(inputValue))
-      setUsers(userEmail);
+      const filteredUsers = originalUsers.filter(user =>
+        user.email.includes(inputValue)
+      );
+      setUsers(filteredUsers);
     }
-  }, [inputValue])
+  }, [inputValue, originalUsers, setUsers]);
 
   return (
     <>

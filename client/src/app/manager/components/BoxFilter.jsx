@@ -1,14 +1,27 @@
 import React, { useState } from "react";
 import { toast } from "sonner";
 
+/**
+ * BoxFilter Component
+ * 
+ * A component for filtering feedbacks based on date, rating, and status.
+ * 
+ * @param {Array} feedbacks - List of feedbacks to filter.
+ * @param {Function} filter - Function to update the filtered feedbacks.
+ */
 function BoxFilter({ feedbacks, filter }) {
+  // States for managing selected filter criteria
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedRating, setSelectedRating] = useState("all");
   const [selectedStatus, setSelectedStatus] = useState("all");
 
+  /**
+   * Handles filtering the feedbacks based on selected criteria.
+   */
   const handlerFilter = () => {
     let filteredFeedbacks = feedbacks;
 
+    // Check if feedbacks array is empty and show toast error
     if (!feedbacks || feedbacks.length === 0) {
       toast.error('Feedbacks not found', {
         description: new Date(Date.now()).toLocaleString('en-us'),
@@ -23,16 +36,17 @@ function BoxFilter({ feedbacks, filter }) {
 
     const selectDateObject = selectedDate ? new Date(selectedDate) : null;
 
+    // Filter feedbacks by selected date
     if (selectDateObject) {
       filteredFeedbacks = filteredFeedbacks.filter((feedback) => {
         const feedbackDate = new Date(feedback.createdAt);
         const selectedDateString = selectDateObject.toISOString().split("T")[0];
         const feedbackDateString = feedbackDate.toISOString().split("T")[0];
-
         return selectedDateString === feedbackDateString;
       });
     }
 
+    // Filter feedbacks by selected rating
     if (selectedRating !== "all") {
       filteredFeedbacks = filteredFeedbacks.filter(
         (feedback) =>
@@ -41,12 +55,14 @@ function BoxFilter({ feedbacks, filter }) {
       );
     }
 
+    // Filter feedbacks by selected status
     if (selectedStatus !== "all") {
       filteredFeedbacks = filteredFeedbacks.filter(
         (feedback) => selectedStatus === "Archived" ? feedback?.archived === selectedStatus : feedback?.status === selectedStatus
       );
     }
 
+    // Check if no feedbacks match the filters and show toast error
     if (filteredFeedbacks.length === 0) {
       toast.error('Feedbacks not found', {
         description: new Date(Date.now()).toLocaleString('en-us'),
@@ -59,6 +75,7 @@ function BoxFilter({ feedbacks, filter }) {
       });
     }
 
+    // Update the filtered feedbacks
     filter(filteredFeedbacks);
   };
 

@@ -1,6 +1,6 @@
 "use client"
-import React, { useEffect, useState } from 'react';
-import { useForm }from 'react-hook-form';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { FaSpinner } from "react-icons/fa";
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
@@ -8,21 +8,23 @@ import { useAuth } from '../../context/authContext';
 
 const Login = () => {
   const router = useRouter();
-  const { register, handleSubmit, setError, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const { signIn, user, isAuthenticated, btnState } = useAuth();
 
+  // Redirecciona a la página de feedbacks si el usuario está autenticado
   useEffect(() => {
     if (isAuthenticated) {
       toast.success(`Welcome back, ${user.name}!`, { duration: 2000 });
       setTimeout(() => {
-        router.push('/feedbacks')
-      }, 3000)
+        router.push('/feedbacks');
+      }, 3000);
     }
   }, [isAuthenticated]);
 
-  const loginUser = async (user) => {
-    signIn(user);
-  }
+  // Función para manejar el inicio de sesión del usuario
+  const loginUser = async (userData) => {
+    signIn(userData);
+  };
 
   return (
     <div className="flex items-center justify-center max-h-screen">
@@ -30,8 +32,9 @@ const Login = () => {
         <h4 className="block font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-gray-900 text-center">
           Sign in
         </h4>
-        <form onSubmit={handleSubmit(values => loginUser(values))} className="mt-8 mb-2 w-full">
+        <form onSubmit={handleSubmit(loginUser)} className="mt-8 mb-2 w-full">
           <div className="flex flex-col gap-4 mb-6">
+            {/* Campo de correo electrónico */}
             <label className="block font-sans text-base font-semibold leading-relaxed text-gray-900 bg-white">
               Email address
               <input
@@ -42,6 +45,7 @@ const Login = () => {
               />
               {errors.email && <p className='bg-red-700 rounded text-center text-white font-sans'>Email is required</p>}
             </label>
+            {/* Campo de contraseña */}
             <label className="block font-sans text-base font-semibold leading-relaxed text-gray-900">
               Password
               <input
@@ -53,14 +57,16 @@ const Login = () => {
               {errors.password && <p className='bg-red-700 rounded text-center text-white font-sans'>Password is required</p>}
             </label>
           </div>
+          {/* Botón de inicio de sesión */}
           { !btnState ? (
             <button
-            className="mt-4 block w-full select-none rounded-lg bg-green-600 py-3 text-center font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-lg focus:opacity-85 active:opacity-85"
-            type="submit"
+              className="mt-4 block w-full select-none rounded-lg bg-green-600 py-3 text-center font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-lg focus:opacity-85 active:opacity-85"
+              type="submit"
             >
               Sign in
             </button>
           ) : (
+            // Botón de carga cuando se está procesando la solicitud
             <button type="button" className="mt-4 block w-full select-none rounded-lg bg-green-600 py-1 text-center font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-lg focus:opacity-85 active:opacity-85 flex justify-center" disabled>
               <div className='flex row'>
                 <FaSpinner className=' animate-spin h-8 w-5 mr-3 ..." viewBox="0 0 24 24"' />

@@ -5,9 +5,9 @@ import { AuthProvider } from '../context/authContext';
 const GetStarted = () => {
   return (
     <>
-    <AuthProvider>
-      <Homepage />
-    </AuthProvider>
+      <AuthProvider>
+        <Homepage />
+      </AuthProvider>
     </>
   );
 };

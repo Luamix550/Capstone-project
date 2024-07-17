@@ -1,6 +1,13 @@
 import React from "react";
 import { useAdmin } from "../../context/adminContext";
 
+/**
+ * CardUser Component
+ * 
+ * A component to display user information and allow updating user roles.
+ * 
+ * @param {Object} user - The user object containing user details.
+ */
 function CardUser({ user }) {
   const { updateUserRol } = useAdmin();
 
@@ -11,19 +18,19 @@ function CardUser({ user }) {
           <img
             className="object-cover rounded-full w-20 h-20 md:w-16 md:h-16 shadow-2xl"
             src={`https://gravatar.com/avatar/${user.avatar}?d=mp`}
-            alt="Your avatar"
+            alt="User avatar"
           />
         </div>
         <div className="ml-3 inline-block min-w-0">
           <p className="font-semibold text-xl text-gray-800">{`${user.name} ${user.lastname}`}</p>
-          <h5 className="font-bold text-gray-500 truncate block ">{user.email}</h5>
+          <h5 className="font-bold text-gray-500 truncate block">{user.email}</h5>
         </div>
       </div>
 
       <div className="flex items-center">
         <div>
           <select
-            id="countries"
+            id="roles"
             className="bg-gray-50 border text-gray-800 text-sm rounded-lg block w-full p-2.5 border-gray-600 hover:border"
             defaultValue={user.rol}
             onChange={({ target }) =>
