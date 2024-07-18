@@ -59,15 +59,13 @@ const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
         </h2>
         {userFeedbacks.length > 0 && (
           <div className="relative mt-12 flex items-center snap-x snap-start overflow-x-hidden">
-            {userFeedbacks.length > 3 && (
-              <button
-                className="absolute left-0 z-10 p-2 snap-proximity bg-white rounded-full shadow-md hover:bg-gray-200 transition duration-300"
-                aria-label="Scroll Left"
-                onClick={scrollLeft}
-              >
-                <ArrowBackIosIcon />
-              </button>
-            )}
+            <button
+              className="absolute left-0 z-10 p-2 snap-proximity bg-white rounded-full shadow-md hover:bg-gray-200 transition duration-300"
+              aria-label="Scroll Left"
+              onClick={scrollLeft}
+            >
+              <ArrowBackIosIcon />
+            </button>
             <div
               className="flex overflow-x-hidden overflow-y-hidden space-x-8 mx-12 no-scrollbar snap-x snap-proximity"
               ref={feedbackContainerRef}
@@ -79,18 +77,15 @@ const FeedbacksUsers = ({ feedbacks = [], addFeedback }) => {
                 </Suspense>
               ))}
             </div>
-            {userFeedbacks.length > 3 && (
-              <button
-                className="absolute right-0 z-10 p-2 bg-white rounded-full shadow-md hover:bg-gray-200 transition duration-300"
-                aria-label="Scroll Right"
-                onClick={scrollRight}
-              >
-                <ArrowForwardIosIcon />
-              </button>
-            )}
+            <button
+              className="absolute right-0 z-10 p-2 bg-white rounded-full shadow-md hover:bg-gray-200 transition duration-300"
+              aria-label="Scroll Right"
+              onClick={scrollRight}
+            >
+              <ArrowForwardIosIcon />
+            </button>
           </div>
         )}
-
         {(userFeedbacks.length > 0 || allFeedbacks.length > 0) && (
           <div className="flex justify-center mt-8">
             <Calendar />
