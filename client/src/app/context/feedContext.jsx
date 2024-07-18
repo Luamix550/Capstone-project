@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useState, useContext } from "react";
-import { filterFeedbacks, getFeedbacks, newFeedback } from '../api/userFeedback'; // Importing API functions for user feedback
+import { filterFeedbacks, getFeedback, getFeedbacks, newFeedback } from '../api/userFeedback'; // Importing API functions for user feedback
 import { toast } from "sonner"; // Importing toast notifications
 
 // Creating the feedback context
@@ -18,6 +18,8 @@ export const FeedProvider = ({ children }) => {
     const [allFeedbacks, setAllFeedbacks] = useState([]); // State to store all feedbacks
     const [filteredFeedbacks, setFilteredFeedbacks] = useState([]); // State to store filtered feedbacks
     const [showInitialFeedbacks, setShowInitialFeedbacks] = useState(true); // State to manage initial feedbacks visibility
+    const [feedbackUser, setFeedackUser] = useState([]); // State initialization for feedback user
+    const [loading, setLoading] = useState(true); // State initialization for loading status
 
     // Function to fetch all feedbacks
     const getAllFeedbacks = async () => {
@@ -26,6 +28,19 @@ export const FeedProvider = ({ children }) => {
             setAllFeedbacks(data);
         } catch (error) {
             console.log(error?.response?.data?.message);
+        }
+    }
+
+    // Function to fetch feedback user data based on feedback ID
+    const getFeedbackUser = async (feedbackId) => {
+        try {
+            const { data } = await getFeedback(feedbackId);
+            setFeedackUser(data);
+            setLoading(false);
+        }
+        catch (error) {
+            setLoading(false);
+            console.log(error?.response?.data?.message)
         }
     }
     
@@ -68,7 +83,10 @@ export const FeedProvider = ({ children }) => {
             filterFeeds,
             showInitialFeedbacks,
             setShowInitialFeedbacks,
-            setAllFeedbacks
+            setAllFeedbacks,
+            getFeedbackUser,
+            feedbackUser,
+            loading
         }}>
             { children }
         </FeedContext.Provider>

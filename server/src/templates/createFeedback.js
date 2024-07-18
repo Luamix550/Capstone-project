@@ -134,7 +134,7 @@ export const generateFeedback = ({ feedbackId, completeName }) => {
           essential to us and helps us to keep improving.
         </p>
 
-        <p>You can follow the status of your feedback <a class="linkRank" href="http://localhost:3000/feedback/${feedbackId}">here</a></p>
+        <p>You can follow the status of your feedback <a class="linkRank" href="http://localhost:3000/feedbacks/${feedbackId}">here</a></p>
       </div>
 
       <div class="preFinalPreview">

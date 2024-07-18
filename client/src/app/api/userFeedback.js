@@ -8,3 +8,6 @@ export const getFeedbacks = () => axios.get('/feedbacks');
 
 // Function to filter feedbacks by date
 export const filterFeedbacks = (date) => axios.post('/feedbacks/filter', date);
+
+// Function to get feedback by ID
+export const getFeedback = (id) => axios.get(`/feedbacks/${id}`);
