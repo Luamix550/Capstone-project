@@ -35,6 +35,31 @@ export const allFeedbacks = async (req, res) => {
     }
 };
 
+/**
+ * Retrieve a specific feedback by ID.
+ * 
+ * Endpoint: GET /api/feedbacks/:id
+ * 
+ * @param {string} req.params.id - ID of the feedback to retrieve.
+ * 
+ * @returns {Object} Feedback data:
+ * 
+ * @throws {404} If the feedback with the specified ID is not found.
+ * @throws {500} If there is a server error while retrieving the feedback.
+ */
+export const getFeedback = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const feedbackFound = await Feedback.findById({ _id: id });
+
+        if (!feedbackFound) return res.status(404).json({ status: 'error', message: ['Feedback not found'] });
+
+        res.json(feedbackFound);
+    } catch (error) {
+        res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }
+}
+
 
 
 /**
@@ -104,7 +129,6 @@ export const filterFeedbackDate = async (req, res) => {
  * @throws {500} If there is a server error while creating the feedback.
  */
 export const newFeedback = async (req, res) => {
-    console.log(req.body)
     try {
         const userId = req.userId;
         const { title, description, current_rating, category } = req.body;
@@ -161,9 +185,7 @@ export const newFeedback = async (req, res) => {
  */
 export const updateFeedback = async (req, res) => {
     const { id } = req.params;
-
     try {
-
         const feedback = await Feedback.findByIdAndUpdate(id, req.body, {
             new: true,
         });

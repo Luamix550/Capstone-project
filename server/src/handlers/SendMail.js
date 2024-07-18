@@ -29,7 +29,7 @@ export const mailByCreatedFeedBack = async (userId, feedbackId) => {
 
     // Create the content of the email
     const content = generateFeedback({
-      feedbackId: feedbackId,
+      feedbackId: feedbackId._id,
       completeName: `${name} ${lastname}`,
     });
 
