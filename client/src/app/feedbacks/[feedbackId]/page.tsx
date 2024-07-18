@@ -4,10 +4,15 @@
 import React, { useEffect } from 'react'
 import { useFeed } from '@/app/context/feedContext';
 import FeedbackCard from '../components/FeedbackCard';
+import { useRouter } from 'next/navigation';
+import Footer from "../components/Footer";
+import { useMediaQuery } from '@mui/material';
 
 export default function FeedbackId({params} : {params : {feedbackId : string}}) {
     const { getFeedbackUser, feedbackUser, loading } = useFeed();
     const { feedbackId } = params;
+    const router = useRouter();
+    const buttom = useMediaQuery("(min-width: 768px)");
 
     useEffect(() => {
         getFeedbackUser(feedbackId);
@@ -25,8 +30,25 @@ export default function FeedbackId({params} : {params : {feedbackId : string}}) 
       }
 
   return (
-    <>
-    <FeedbackCard feedback={feedbackUser} />
-    </>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-background-1'>
+      <button
+        type='button'
+        onClick={() => router.push('/started')}
+        className='flex items-center absolute left-2 top-2 md:left-4 md:top-4 bg-red-700 rounded-md p-4 text-white font-bold hover:bg-red-500 hover:scale-105 duration-300'
+      >
+        <svg className="w-6 h-6 text-gray-800 dark:text-white mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m15 19-7-7 7-7"/>
+        </svg>
+        {buttom && (
+          <span className="hidden sm:inline">Back to home</span>
+        )}
+      </button>
+      <div className="flex-grow flex items-center justify-center w-full px-4">
+        <FeedbackCard feedback={feedbackUser} />
+      </div>
+      <div className='w-full md:absolute bottom-0'>
+        <Footer />
+      </div>
+    </div>
   )
 }
