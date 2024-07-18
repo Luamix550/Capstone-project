@@ -11,7 +11,7 @@ const Navbar = () => {
   // Call the profile function once when the component mounts to fetch user profile data
   useEffect(() => {
     profile();
-  }, [profile]);
+  }, []);
 
   return (
     <nav className="shadow-lg flex justify-between items-center mx-auto max-w-screen p-6 bg-white">
